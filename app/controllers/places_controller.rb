@@ -16,6 +16,10 @@ class PlacesController < ApplicationController
     end
   end
 
+  def index
+    @places = Place.all
+  end
+
   private
 
     def place_params

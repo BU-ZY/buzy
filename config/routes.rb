@@ -9,6 +9,8 @@ Buzy::Application.routes.draw do
   
 
 
+  get '/places/:id', to: 'places#show'
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
