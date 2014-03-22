@@ -197,15 +197,19 @@ aside {
   }
 }
 
-.span6 {
+.offset3 {
   margin: auto;
-  width: 460px; }
+  float: center;
+  width: 33%; }
 
 .gravatar {
   float: left;
   margin-right: 10px;
 }
 
+.row{
+  margin: auto;
+}
 /* forms */
 
 input, textarea, select, .uneditable-input {
