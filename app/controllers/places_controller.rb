@@ -5,6 +5,7 @@ class PlacesController < ApplicationController
 
   def show
   	@place = Place.find(params[:id])
+    @total = 0
   end
 
   def create
