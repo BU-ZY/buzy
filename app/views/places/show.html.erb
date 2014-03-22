@@ -18,8 +18,9 @@
 
 <%= line_chart @graphable %>
 
+How far back to check (minutes)?
 <%= form_for @place, :html => {:method => :post} do |f| %>
-	<%= text_field_tag(:time_ago) %>
+	<div class="text-box" style="width: 100px;"><%= text_field_tag(:time_ago) %></div>
   <%= f.submit "Check" %>
 <% end %>
 </center>
