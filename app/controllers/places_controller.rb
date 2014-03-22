@@ -1,5 +1,32 @@
 class PlacesController < ApplicationController
- include CalcBusynessColor
+
+  def busyness_color(score)
+    case score
+      when 0..33
+        @color = '#66CC00'
+      when 34..66
+        @color = '#FF9933'
+      else
+        @color = '#FF0000'
+    end
+    @color
+  end
+
+  def score(place)
+    now = Time.new
+   
+    total_time_ago = 0 
+    place.votes.each do |vote| #total times ago
+      total_time_ago += now - vote.created_at
+    end
+    
+    @total = 0
+    place.votes.each do |vote| #calc weighted average
+      time_ago = (now-vote.created_at)
+      @total += (vote.score*(time_ago/total_time_ago)).round
+    end
+    @total 
+  end
 
   def new
   	@place = Place.new
@@ -7,13 +34,9 @@ class PlacesController < ApplicationController
 
   def show
   	@place = Place.find(params[:id])
-    unless @place.votes.blank? #calculate average
-      @total = 0
-      @place.votes.each do |vote|
-        @total+= vote.score
-      end
-      @average = @total/@place.votes.length
-      @color = busyness_color(@average)
+    unless @place.votes.blank?
+      @score = score(@place)
+      @color = busyness_color(@score)
     end
   end
 

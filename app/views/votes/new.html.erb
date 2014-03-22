@@ -11,8 +11,10 @@
      <pgit stat>
   		<%=f.input :place_id, collection: Place.all, prompt: "Select a Place"%>
 	</p>
+    
+    <%= f.submit "Quiet", class: "btn btn-large btn-primary" %> <%= f.submit "Moderate", class: "btn btn-large btn-primary" %> <%= f.submit "Busy", class: "btn btn-large btn-primary" %>
 
-      <%= f.submit "Create Vote", class: "btn btn-large btn-primary" %>
     <% end %>
+
   </div>
 </div>
