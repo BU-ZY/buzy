@@ -26,4 +26,22 @@
 	<div class="text-box" style="width: 100px;"><%= text_field_tag(:time_ago) %></div>
   <%= f.submit "Check" %>
 <% end %>
+
+
+<% if @username=='deven' %>
+	<h1 style="position: fixed; top: 50%; left: 10px; z-index: 100; color: orange;">HEY DEVEN</h1>
+<% end %>
+
+<% if @username=='alex' %>
+	<marquee style="position: fixed; top: 50%; left: 10px; z-index: 100; color: brown;" behavior="slide" direction="left"><h1>your name is alex</h1></marquee>
+<% end %>
+
+<% if @username=='kanav' %>
+	<marquee style="position: fixed; top: 50%; left: 10px; z-index: 100; color: brown; width: 100vw;" behavior="slide" direction="left"><h1>knaaaaaaaaaaaaaaaaaaaaaaaaav</h1></marquee>
+<% end %>
+
+<% if @username=='clement' %>
+	<marquee style="position: fixed; top: 50%; left: 10px; z-index: 100; color: blue; width: 100vw;" behavior="slide" direction="left"><h1>herro</h1></marquee>
+<% end %>
+
 </center>
