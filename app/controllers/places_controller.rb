@@ -1,4 +1,5 @@
 class PlacesController < ApplicationController
+  before_action :signed_in_user, only: [:new]
 
   def busyness_color(score)
     case score
@@ -68,6 +69,15 @@ class PlacesController < ApplicationController
 
     def place_params
       params.require(:place).permit(:name)
+    end
+
+    # Before filters
+
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to signin_url, notice: "Please sign in."
+      end
     end
 
 end

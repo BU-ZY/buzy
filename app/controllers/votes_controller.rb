@@ -1,4 +1,5 @@
 class VotesController < ApplicationController
+  before_action :signed_in_user, only: [:new,:create]
   
   def new
   	@vote = Vote.new
@@ -25,4 +26,12 @@ class VotesController < ApplicationController
 
     end
 
+    # Before filters
+
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to signin_url, notice: "Please sign in."
+      end
+    end
 end
