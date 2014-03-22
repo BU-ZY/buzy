@@ -4,7 +4,7 @@ module CalcBusynessColor
 			when 0..33
 				@color = '#66CC00'
 			when 34..66
-				@color = '#FFFF33'
+				@color = '#FF9933'
 			else
 				@color = '#FF0000'
 		end
