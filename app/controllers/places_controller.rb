@@ -44,7 +44,7 @@ class PlacesController < ApplicationController
   end
 
   def show
-  	@place = Place.find(params[:id])
+    @place = Place.find(params[:id])
     @time_ago = params[:time_ago] ? params[:time_ago].to_i : 30
     unless @place.votes.blank?
       votes = !@time_ago.blank? ? votes_to_count(@time_ago) : @place.votes
@@ -68,21 +68,16 @@ class PlacesController < ApplicationController
       @name = place_params[:name]
       render 'place_exists_with_name'
     end
-
   end
 
   def index
     @places = Place.all
-    @hash = Gmaps4rails.build_markers(@users) do |user, marker|
-    marker.lat user.latitude
-    marker.lng user.longitude
-end
   end
 
   private
 
     def place_params
-      params.require(:place).permit(:name)
+      params.require(:place).permit(:name, :longitude, :latitude)
     end
 
     # Before filters

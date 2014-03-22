@@ -45,6 +45,6 @@ end
 
 gem 'gmaps4rails'
 gem 'simple_form'
-gem 'underscore-rails'
 gem 'geocode'
 gem 'skeleton-rails'
+gem  'google_static_maps_helper'
