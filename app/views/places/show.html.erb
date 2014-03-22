@@ -7,9 +7,8 @@
 	<h2>this place has votes!</h2>
 	<% @place.votes.each do |vote| %>
 		<li><%= vote.score %></li>
-		<% @total+= vote.score %>
 	<% end %>
 	<h2>the average score is</h2>
-	<%= @total/@place.votes.length %>
+	<h1 style = "color:<%= @color %>;"><%= @average %></h1>
 <% end %>
 </center>

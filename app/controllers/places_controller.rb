@@ -1,11 +1,20 @@
 class PlacesController < ApplicationController
+ include CalcBusynessColor
+
   def new
   	@place = Place.new
   end
 
   def show
   	@place = Place.find(params[:id])
-    @total = 0
+    unless @place.votes.blank? #calculate average
+      @total = 0
+      @place.votes.each do |vote|
+        @total+= vote.score
+      end
+      @average = @total/@place.votes.length
+      @color = busyness_color(@average)
+    end
   end
 
   def create
