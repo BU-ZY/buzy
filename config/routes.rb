@@ -5,7 +5,7 @@ Buzy::Application.routes.draw do
   resources :users
   resources :places
   resources :votes
-  resources :sessions, only: 
+  resources :sessions, only: [:new, :create, :destroy]
 
   root 'static_pages#home'
 
@@ -13,7 +13,7 @@ Buzy::Application.routes.draw do
   match '/add', to: 'places#new', via: 'get'
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
-  match '/signin', to: 'sessions#destroy', via: 'delete'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
 
   get "places/new"
   get "votes/new"
