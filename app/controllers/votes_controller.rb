@@ -21,7 +21,8 @@ class VotesController < ApplicationController
   private
 
     def vote_params
-     params.require(:vote).permit(:score)
+    params.require(:vote).permit(:score,[:place_id])
+
     end
 
 end
