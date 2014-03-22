@@ -6,6 +6,8 @@ Buzy::Application.routes.draw do
   get "users/new"
   get "static_pages/home"
 
+  get '/places/:id', to: 'places#show'
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
