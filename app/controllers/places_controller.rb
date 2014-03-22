@@ -1,4 +1,5 @@
 class PlacesController < ApplicationController
+  include SessionsHelper
   before_action :signed_in_user, only: [:new]
 
   def busyness_color(score)
@@ -50,6 +51,7 @@ class PlacesController < ApplicationController
       @score = score(votes)==0 ? 50 : score(votes)
       @color = busyness_color(@score)
       @graphable  = graphable_votes(votes)
+      @username = current_user.name
     end
   end
 
