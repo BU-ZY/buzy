@@ -13,7 +13,7 @@ class VotesController < ApplicationController
   def create
     @vote = Vote.new(vote_params)
     if @vote.save
-      redirect_to places_path(@vote.place_id)
+      redirect_to place_path(@vote.place)
     else
       render 'new'
     end
