@@ -12,16 +12,21 @@ class PlacesController < ApplicationController
     @color
   end
 
-  def score(place)
+  def votes_to_count(time_ago)
+    @place.votes.select {|vote| ((time_ago/60).round.hour.ago) < vote[:created_at] }
+  end
+
+  def score(votes) #unless a time_ago in minutes is passed, scores all votes
+
     now = Time.new
-   
+  
     total_time_ago = 0 
-    place.votes.each do |vote| #total times ago
+    votes.each do |vote| #total times ago
       total_time_ago += now - vote.created_at
     end
     
     @total = 0
-    place.votes.each do |vote| #calc weighted average
+    votes.each do |vote| #calc weighted average
       time_ago = (now-vote.created_at)
       @total += (vote.score*(time_ago/total_time_ago)).round
     end
@@ -32,11 +37,18 @@ class PlacesController < ApplicationController
   	@place = Place.new
   end
 
+  def graphable_votes(votes)
+    votes.map { |x| [x.created_at, x.score]}
+  end
+
   def show
   	@place = Place.find(params[:id])
+    @time_ago = params[:time_ago] ? params[:time_ago].to_i : 30
     unless @place.votes.blank?
-      @score = score(@place)
+      votes = @time_ago!=0 ? votes_to_count(@time_ago) : @places.votes
+      @score = score(votes)
       @color = busyness_color(@score)
+      @graphable  = graphable_votes(votes)
     end
   end
 
@@ -50,7 +62,7 @@ class PlacesController < ApplicationController
         render 'new'
       end
     else
-      place_exists_with_name place_params[:name]
+      @name = place_params[:name]
       render 'place_exists_with_name'
     end
 
@@ -58,10 +70,6 @@ class PlacesController < ApplicationController
 
   def index
     @places = Place.all
-  end
-
-  def place_exists_with_name(name) #render an error page if the user tried to create a place that already exists
-    @name = name
   end
 
   private

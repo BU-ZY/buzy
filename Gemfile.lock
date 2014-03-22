@@ -47,6 +47,7 @@ GEM
     celluloid-io (0.15.0)
       celluloid (>= 0.15.0)
       nio4r (>= 0.5.0)
+    chartkick (1.2.2)
     childprocess (0.5.1)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
@@ -214,6 +215,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (= 2.3.2.0)
   capybara (= 2.1.0)
+  chartkick
   coffee-rails (= 4.0.1)
   factory_girl_rails (= 4.2.1)
   guard-rspec (= 2.5.0)
