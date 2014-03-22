@@ -10,7 +10,7 @@
 
      <p>
  		<%= f.label :Place %><br />
-  		<%=f.input :age, collection: 18..60, prompt: "Select your age"%>
+  		<%=f.input :place_id, collection: Place.all, prompt: "Select a Place"%>
 	</p>
 
       <%= f.submit "Create Vote", class: "btn btn-large btn-primary" %>
