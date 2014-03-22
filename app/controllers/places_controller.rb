@@ -2,9 +2,9 @@ class PlacesController < ApplicationController
 
   def busyness_color(score)
     case score
-      when 0..3
+      when 0..33
         @color = '#66CC00'
-      when 34..6
+      when 34..66
         @color = '#FF9933'
       else
         @color = '#FF0000'
@@ -12,12 +12,14 @@ class PlacesController < ApplicationController
     @color
   end
 
-  def avg_score(place)
+  def score(place)
     @total = 0
     place.votes.each do |vote|
       @total += vote.score
     end
     @average = @total/place.votes.length
+    @average>100 ? 100 : @average
+    @average<0 ? 0 : @average
   end
 
   def new
@@ -28,8 +30,8 @@ class PlacesController < ApplicationController
   	@place = Place.find(params[:id])
 
     unless @place.votes.blank? #calculate average
-      @average = avg_score(@place)
-      @color = busyness_color(@average)
+      @score = score(@place)
+      @color = busyness_color(@score)
     end
   end
 
