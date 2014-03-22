@@ -1,6 +1,15 @@
 <!-- display place names, display each vote for the place -->
 
 <h2><%= @place.name %></h2>
+<h2>All votes</h2>
+<% Vote.all.each do |vote| %>
+	<li>place <%= vote.place_id %> got a <%= vote.score %></li>
+<% end %>
+
+<h2>This place's votes</h2>
+<% Vote.where(:place_id => @place.id).each do |vote| %>
+	<%= vote.score %>
+<% end %>
 
 <% if @place.votes.blank? %>
 	<h3>this place doesn't have any votes!</h3>
