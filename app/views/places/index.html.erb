@@ -1,4 +1,9 @@
 <h1>All the places:</h1>
+
 <% @places.each do |place| %>
 	<li><a href="\places/<%= place.id %>"><%= place.name %></a></li>
+
 <% end %>
+<h1>
+	<%= link_to "Add a Place", '/places/new', class: "btn btn-large btn-primary" %> 
+</h1>
