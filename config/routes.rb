@@ -4,10 +4,18 @@ Buzy::Application.routes.draw do
   resources :votes
 
 
+  root 'static_pages#home'
+
   get "places/new"
   get "votes/new"
   get "users/new"
+<<<<<<< HEAD
   get "static_pages/home"
+=======
+  
+
+
+>>>>>>> 95a1f857203efd34935305a544b2219dd8d4f0c7
   get '/places/:id', to: 'places#show'
 
 

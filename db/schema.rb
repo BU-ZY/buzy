@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20140322041827) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password"
+    t.string   "password_digest"
   end
 
   create_table "votes", force: true do |t|
