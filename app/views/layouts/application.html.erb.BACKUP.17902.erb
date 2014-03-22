@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<<<<<<< HEAD
+<head>
+  <title>Buzy</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= yield %>
+</body>
+</html>
+=======
+  <head>
+    <title> BUZY </title>
+    <%= stylesheet_link_tag "application", media: "all",
+                                           "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/shim' %>
+  </head>
+  <body>
+    <%= render 'layouts/header' %>
+    <div class="container">
+      
+      <% flash.each do |key,value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+      
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
+  </body>
+</html>
+>>>>>>> 95a1f857203efd34935305a544b2219dd8d4f0c7
