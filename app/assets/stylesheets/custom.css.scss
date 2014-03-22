@@ -53,11 +53,12 @@ p {
 }
 
 /* Header */
-
+.navbar{
 .navbar-inner {
   background-color: #CC0000;
+  background-image: none; 
 }
-
+}
 #logo {
   float: left;
   margin-right: 10px;
@@ -169,4 +170,9 @@ input {
     list-style: none;
     margin: 0 0 18px 0;
   }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
 }

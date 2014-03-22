@@ -20,6 +20,9 @@ Buzy::Application.routes.draw do
   get "users/new"
   get "static_pages/home"
   get '/places/:id', to: 'places#show'
+  match 'places/:id/:time_ago' => 'places#show', via: 'get'
+  match 'places/:id/?q=:time_ago&submit=look' => 'places#show', via: 'get'
+  match 'places/:id/' => 'places#show', via: 'post'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
