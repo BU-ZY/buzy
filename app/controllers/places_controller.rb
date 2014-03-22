@@ -9,19 +9,16 @@ class PlacesController < ApplicationController
 
   def create
 
-    if Place.where(:name => place_params[:name]).blank?
+    if Place.where(:name => place_params[:name]).blank? #check if a place with that name exists
       @place = Place.new(place_params)
-    else
-      place_exists_with_name place_params[:name]
-      render 'place_exists_with_name'
-    end
-
-    unless @place.nil?
       if @place.save
         redirect_to @place
       else
         render 'new'
       end
+    else
+      place_exists_with_name place_params[:name]
+      render 'place_exists_with_name'
     end
 
   end
