@@ -53,11 +53,12 @@ p {
 }
 
 /* Header */
-
+.navbar{
 .navbar-inner {
   background-color: #CC0000;
+  background-image: none; 
 }
-
+}
 #logo {
   float: left;
   margin-right: 10px;
