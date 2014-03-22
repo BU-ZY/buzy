@@ -1,16 +1,19 @@
-<h1>All the places:</h1>
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<h1>The Locations:</h1>
 
 <% @places.each do |place| %>
-	<div class="allplaces">
-		<li><a href="\places/<%= place.id %>/60"><%= place.name %></a>
-			<div class="VoteButtons">
-				<ul>
-					<%= link_to "Quiet", '/vote', class: "btn " %> <%= link_to "Moderate", '/vote', class: "btn" %> <%= link_to "Busy", '/vote', class: "btn" %>
-				</ul>
+	<div class="panel" id="companies">
+		<div class="content">
+			<h4 class="companies-title"></h4>
+			<a href="\places/<%= place.id %>/60">
+			<div class="company-wrapper-outer">
+					<div class="company-wrapper-inner">
+						<%= place.name%>
+					</div>
 			</div>
-		</li>
+			</a>
+		</div>
 	</div>
-
 <% end %>
 
 <div class="center hero-unit">
