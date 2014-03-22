@@ -2,9 +2,9 @@ class PlacesController < ApplicationController
 
   def busyness_color(score)
     case score
-      when 0..33
+      when 0..3
         @color = '#66CC00'
-      when 34..66
+      when 34..6
         @color = '#FF9933'
       else
         @color = '#FF0000'
