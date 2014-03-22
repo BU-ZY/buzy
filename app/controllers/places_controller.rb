@@ -1,5 +1,24 @@
 class PlacesController < ApplicationController
- include CalcBusynessColor
+
+  def busyness_color(score)
+    case score
+      when 0..33
+        @color = '#66CC00'
+      when 34..66
+        @color = '#FF9933'
+      else
+        @color = '#FF0000'
+    end
+    @color
+  end
+
+  def avg_score(place)
+    @total = 0
+    place.votes.each do |vote|
+      @total += vote.score
+    end
+    @average = @total/place.votes.length
+  end
 
   def new
   	@place = Place.new
@@ -7,12 +26,9 @@ class PlacesController < ApplicationController
 
   def show
   	@place = Place.find(params[:id])
+
     unless @place.votes.blank? #calculate average
-      @total = 0
-      @place.votes.each do |vote|
-        @total+= vote.score
-      end
-      @average = @total/@place.votes.length
+      @average = avg_score(@place)
       @color = busyness_color(@average)
     end
   end
