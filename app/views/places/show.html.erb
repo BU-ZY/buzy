@@ -1,11 +1,13 @@
-<%= @place.name %>
+<!-- display place names, display each vote for the place -->
 
-<!-- 
-<% if @place.votes.nil? %>
-	<h2>this place doesn't have any votes!</h2>
+<h2><%= @place.name %></h2>
+
+<% if @place.votes.blank? %>
+	<h3>this place doesn't have any votes!</h3>
 <% else %>
+	<h3>this place has votes!</h3>
 	<% @place.votes.each do |vote| %>
+		<%= vote %>
 		<%= vote.score %>
 	<% end %>
 <% end %>
--->
