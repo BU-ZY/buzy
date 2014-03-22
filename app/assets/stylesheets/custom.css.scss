@@ -53,12 +53,49 @@ p {
 }
 
 /* Header */
-.navbar{
-.navbar-inner {
-  background-color: #CC0000;
-  background-image: none; 
+.navbar {
+  .navbar-inner {
+    background-color: #CC0000;
+    background-image: none;
+    border-color: #ffffff;
+  }
+  .navbar-text {
+    color: #fff;
+  }
+  .brand {
+    color: #fff;
+  }
+  .nav {
+    color: #fff;
+  }
 }
-}
+
+.navbar-inverse .nav > li > a {
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); }
+  .navbar-inverse .brand:hover, .navbar-inverse .brand:focus,
+  .navbar-inverse .nav > li > a:hover,
+  .navbar-inverse .nav > li > a:focus {
+    color: white; }
+.navbar-inverse .brand {
+  color: #fff; }
+.navbar-inverse .navbar-text {
+  color: #fff; }
+.navbar-inverse .nav > li > a:focus,
+.navbar-inverse .nav > li > a:hover {
+  background-color: transparent;
+  color: white; }
+.navbar-inverse .nav .active > a,
+.navbar-inverse .nav .active > a:hover,
+.navbar-inverse .nav .active > a:focus {
+  color: white;
+  background-color: #111111; }
+.navbar-inverse .navbar-link {
+  color: #fff; }
+  .navbar-inverse .navbar-link:hover, .navbar-inverse .navbar-link:focus {
+    color: white; }
+
+
 #logo {
   float: left;
   margin-right: 10px;
