@@ -4,11 +4,14 @@
 
 
 <center>
-<h1><a href="/places"> < </a><%= @place.name %></h1>
+<h1><a href="/places"> &#8592; </a><%= @place.name %></h1>
 <% if @place.votes.blank? %>
 	<h2>this place doesn't have any votes!</h2>
 <% else %>
-	<h2>busynes score for the past <%= @time_ago %> minutes</h2>
+	<h2>busynes score for the past <%= @time_ago %> minutes 
+		(<a href="/places/<%= @place.id %>/60">last hour</a>
+		<a href="/places/<%= @place.id %>/<%= 24*60 %>">last day</a>
+		<a href="/places/<%= @place.id %>/<%= 7*24*60 %>">last week</a>)</h2>
 	<h1 style = "color:<%= @color %>;"><%= @score %></h1>
 	<h2><%= @place.name %>'s votes</h2>
 	<% @place.votes.each do |vote| %>
@@ -18,7 +21,7 @@
 
 <%= line_chart @graphable %>
 
-How far back to check (minutes)?
+<h2>How far back to check (minutes)?</h2>
 <%= form_for @place, :html => {:method => :post} do |f| %>
 	<div class="text-box" style="width: 100px;"><%= text_field_tag(:time_ago) %></div>
   <%= f.submit "Check" %>
