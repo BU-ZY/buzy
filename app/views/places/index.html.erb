@@ -1,8 +1,18 @@
 <h1>All the places:</h1>
 
 <% @places.each do |place| %>
-	<li><a href="\places/<%= place.id %>/60"><%= place.name %></a></li>
+	<div class="allplaces">
+		<li><a href="\places/<%= place.id %>/60"><%= place.name %></a>
+			<div class="VoteButtons">
+				<ul>
+					<%= link_to "Quiet", '/vote', class: "btn " %> <%= link_to "Moderate", '/vote', class: "btn" %> <%= link_to "Busy", '/vote', class: "btn" %>
+				</ul>
+			</div>
+		</li>
+	</div>
 
 <% end %>
 
+<div class="center hero-unit">
 	<%= link_to "Add a Place", '/places/new', class: "btn btn-large btn-primary" %> 
+</div>
