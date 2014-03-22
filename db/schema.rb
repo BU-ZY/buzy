@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20140322033555) do
-=======
 ActiveRecord::Schema.define(version: 20140322041827) do
->>>>>>> c6ce221c9f02bb58bfc01af6d3ca49f65c1b495d
 
   create_table "places", force: true do |t|
     t.string   "name"
