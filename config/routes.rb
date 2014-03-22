@@ -3,8 +3,12 @@ Buzy::Application.routes.draw do
   resources :places
   resources :votes
 
-
   root 'static_pages#home'
+
+  match '/vote', to: 'votes#new', via: 'get'
+  match '/add', to: 'places#new', via: 'get'
+  match '/signup', to: 'users#new', via: 'get'
+  #match '/login', to: '#', via: 'get'
 
   get "places/new"
   get "votes/new"
