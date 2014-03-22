@@ -52,6 +52,20 @@ p {
 	line-height: 1.7em;
 }
 
+.allplaces {
+  font-size: 2em;
+  text-align: left;
+  list-style-type: none;
+  margin-bottom: 30px;
+  display: inline;
+}
+
+.VoteButtons {
+  text-align: right;
+  display: inline;
+}
+
+
 /* Header */
 .navbar {
   .navbar-inner {
