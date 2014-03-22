@@ -2,9 +2,12 @@ Buzy::Application.routes.draw do
   resources :users
   resources :places
 
+  root 'static_pages#home'
+
   get "places/new"
   get "users/new"
-  get "static_pages/home"
+  
+
 
   get '/places/:id', to: 'places#show'
 
