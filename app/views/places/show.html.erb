@@ -4,7 +4,7 @@
 
 
 <center>
-<h1><%= @place.name %></h1>
+<h1><a href="/places"> < </a><%= @place.name %></h1>
 <% if @place.votes.blank? %>
 	<h2>this place doesn't have any votes!</h2>
 <% else %>

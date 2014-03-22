@@ -46,7 +46,7 @@ class PlacesController < ApplicationController
   	@place = Place.find(params[:id])
     @time_ago = params[:time_ago] ? params[:time_ago].to_i : 30
     unless @place.votes.blank?
-      votes = @time_ago!=0 ? votes_to_count(@time_ago) : @places.votes
+      votes = !@time_ago.blank? ? votes_to_count(@time_ago) : @place.votes
       @score = score(votes)
       @color = busyness_color(@score)
       @graphable  = graphable_votes(votes)
