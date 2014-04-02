@@ -8,7 +8,7 @@
 <% if @place.votes.blank? %>
 	<h2>this place doesn't have any votes!</h2>
 <% else %>
-	<h2>busynes score for the past <%= @time_ago %> minutes 
+	<h2>Buzzy score for the past <%= @time_ago %> minutes 
 		(<a href="/places/<%= @place.id %>/60">last hour</a>
 		<a href="/places/<%= @place.id %>/<%= 24*60 %>">last day</a>
 		<a href="/places/<%= @place.id %>/<%= 7*24*60 %>">last week</a>)</h2>
