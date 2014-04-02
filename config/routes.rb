@@ -14,15 +14,15 @@ Buzy::Application.routes.draw do
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
+  match '/home', to: 'static_pages#home', via: 'get'
 
   get "places/new"
   get "votes/new"
   get "users/new"
-  get "static_pages/home"
   get '/places/:id', to: 'places#show'
-  match 'places/:id/:time_ago' => 'places#show', via: 'get'
-  match 'places/:id/?q=:time_ago&submit=look' => 'places#show', via: 'get'
-  match 'places/:id/' => 'places#show', via: 'post'
+  match 'places/:id/:time_ago', to: 'places#show', via: 'get'
+  match 'places/:id/?q=:time_ago&submit=look', to: 'places#show', via: 'get'
+  match 'places/:id/', to: 'places#show', via: 'post'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

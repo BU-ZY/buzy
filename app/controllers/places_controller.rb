@@ -1,6 +1,7 @@
 class PlacesController < ApplicationController
   include SessionsHelper
-  before_action :signed_in_user, only: [:new]
+  # ***DISABLING SIGN IN FOR DEV***
+  #before_action :signed_in_user, only: [:new]
 
   def busyness_color(score)
     case score
@@ -45,13 +46,15 @@ class PlacesController < ApplicationController
 
   def show
     @place = Place.find(params[:id])
-    @time_ago = params[:time_ago] ? params[:time_ago].to_i : 30
+    @time_ago = params[:time_ago] ? params[:time_ago].to_i : 60
     unless @place.votes.blank?
       votes = !@time_ago.blank? ? votes_to_count(@time_ago) : @place.votes
       @score = score(votes)==0 ? 50 : score(votes)
       @color = busyness_color(@score)
       @graphable  = graphable_votes(votes)
-      @username = current_user.name
+      # ***DISABLING USER TRACKING FOR DEV***
+      #@username = current_user.name
+      @username = "Public"
     end
   end
 
@@ -77,7 +80,8 @@ class PlacesController < ApplicationController
   private
 
     def place_params
-      params.require(:place).permit(:name, :longitude, :latitude)
+      #params.require(:place).permit(:name, :longitude, :latitude)
+      params.require(:place).permit(:name)
     end
 
     # Before filters
