@@ -8,7 +8,7 @@
 <% if @place.votes.blank? %>
 	<h2>this place doesn't have any votes!</h2>
 <% else %>
-	<h2>busynes score for the past <%= @time_ago %> minutes 
+	<h2>Buzzy score for the past <%= @time_ago %> minutes 
 		(<a href="/places/<%= @place.id %>/60">last hour</a>
 		<a href="/places/<%= @place.id %>/<%= 24*60 %>">last day</a>
 		<a href="/places/<%= @place.id %>/<%= 7*24*60 %>">last week</a>)</h2>
@@ -25,23 +25,6 @@
 <%= form_for @place, :html => {:method => :post} do |f| %>
 	<div class="text-box" style="width: 100px;"><%= text_field_tag(:time_ago) %></div>
   <%= f.submit "Check" %>
-<% end %>
-
-
-<% if @username=='deven' %>
-	<h1 style="position: fixed; top: 50%; left: 10px; z-index: 100; color: orange;">HEY DEVEN</h1>
-<% end %>
-
-<% if @username=='alex' %>
-	<marquee style="position: fixed; top: 50%; left: 10px; z-index: 100; color: brown;" behavior="slide" direction="left"><h1>your name is alex</h1></marquee>
-<% end %>
-
-<% if @username=='kanav' %>
-	<marquee style="position: fixed; top: 50%; left: 10px; z-index: 100; color: brown; width: 100vw;" behavior="slide" direction="left"><h1>knaaaaaaaaaaaaaaaaaaaaaaaaav</h1></marquee>
-<% end %>
-
-<% if @username=='clement' %>
-	<marquee style="position: fixed; top: 50%; left: 10px; z-index: 100; color: blue; width: 100vw;" behavior="slide" direction="left"><h1>herro</h1></marquee>
 <% end %>
 
 </center>
