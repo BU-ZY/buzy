@@ -4,14 +4,17 @@
 @import "variables";
 
 #places {
-	display: table;
+	position: relative;
+	float: none;
+	margin-bottom: 10px;
+	text-align: center;
 }
 
 #places .place {
 	color: white;
 	padding: 10px;
 	background-color: $red-accent;
-	float: left;
+	display: inline-block;
 	margin: 5px;
 	@include rounded;
 }
