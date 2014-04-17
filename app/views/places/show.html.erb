@@ -8,15 +8,23 @@
 <% if @place.votes.blank? %>
 	<h2>this place doesn't have any votes!</h2>
 <% else %>
-	<h2>Buzzy score for the past <%= @time_ago %> minutes 
-		(<a href="/places/<%= @place.id %>/60">last hour</a>
-		<a href="/places/<%= @place.id %>/<%= 24*60 %>">last day</a>
-		<a href="/places/<%= @place.id %>/<%= 7*24*60 %>">last week</a>)</h2>
-	<h1 style = "color:<%= @color %>;"><%= @score %></h1>
+	<h2>Buzzy score for the past <%= @time_ago %> minutes</h2>
+
+	<h1 style= "color:<%= @color %>; font-weight: bold;"><%= @score %></h1>
+
+	<div id="choices">
+		<div class="choice"><a href="/places/<%= @place.id %>/60">last hour</a></div>
+		<div class="choice"><a href="/places/<%= @place.id %>/<%= 24*60 %>">last day</a></div>
+		<div class="choice"><a href="/places/<%= @place.id %>/<%= 7*24*60 %>">last week</a></div>
+	</div>
+
+	<!--
 	<h2><%= @place.name %>'s votes</h2>
 	<% @place.votes.each do |vote| %>
 		<li><%= vote.score %>, <%= time_ago_in_words(vote.created_at) %> ago</li>
 	<% end %>
+	-->
+
 <% end %>
 
 <%= line_chart @graphable %>

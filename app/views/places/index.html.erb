@@ -5,10 +5,10 @@
 <div class="center"><h1>Places</h1></div>
 
 <div class="row">
-	<div id="places">
+	<div id="choices">
 		<% @places.each do |place| %>
 			<a href="\places/<%= place.id %>/60">
-				<div class="place"><%= place.name%></div>
+				<div class="choice"><%= place.name%></div>
 			</a>
 		<% end %>
 	</div>
