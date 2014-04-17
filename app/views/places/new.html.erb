@@ -1,8 +1,9 @@
-<% provide(:title, 'Add a Location') %>
-<h1>Add a New Place</h1>
+<div class="container">
+
+<div class="center"><h1>Add a New Place</h1></div>
 
 <div class="row">
-  <div class="span6 offset3">
+  <div class="center span6 offset3">
     <%= form_for(@place) do |f| %>
 
       <%= f.label :name %>
@@ -10,8 +11,6 @@
 
       <%= f.submit "Create a new location", class: "btn btn-large btn-primary" %>
     <% end %>
-
-
   </div>
 </div>
 
@@ -41,3 +40,5 @@ navigator.geolocation.getCurrentPosition(function(position){
 }
 </script>
 -->
+
+</div>

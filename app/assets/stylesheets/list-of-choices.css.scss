@@ -1,0 +1,21 @@
+@import "variables";
+
+#choices {
+	position: relative;
+	float: none;
+	margin-bottom: 10px;
+	text-align: center;
+	a, a:hover {
+		color: white;
+		text-decoration: none;
+	}
+}
+
+#choices .choice {
+	color: white;
+	padding: 10px;
+	background-color: $red-accent;
+	display: inline-block;
+	margin: 5px;
+	@include rounded;
+}
