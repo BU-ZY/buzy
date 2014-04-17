@@ -1,4 +1,6 @@
 @import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import "variables";
 
 /* Universal */
 
@@ -8,13 +10,14 @@ html {
 
 body {
 	padding-top: 60px;
+  font-family:'Open Sans',arial,sans-serif;
+  white-space:0!important;
+  word-wrap:break-word;
 }
-
 
  body {
  	padding-top: 60px;
   background-size: 100%;
-  background-color:464646;
 }
 
 section {
@@ -26,12 +29,11 @@ textarea {
 
 .center {
   text-align: center;
-  h1 {
-    margin-bottom: 10px;
-	color:#fff;
-	
+  h1#title {
+    color: $red-accent;
   }
 }
+
 .hero-unit h1 {
   width: 50%;
    margin-left:auto;
@@ -58,42 +60,23 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
 	line-height: 1;
+  letter-spacing: none;
+  margin-bottom: 1em;
+  font-weight: normal;
 }
 
-h1 {
-	background-color: rgba(187, 29, 29, 0.5);;
-	font-size: 3em;
-	color:#fff;
-	letter-spacing: -2px;
-	margin-bottom: 30px;
-	text-align: center;
-}
-
-h2 {
-	font-size: 1.2em;
-	letter-spacing: -1px;
-	margin-bottom: 30px;
-	text-align: center;
-	font-weight: normal;
-	color: #fff;
-}
 
 p {
-	font-size: 1.1em;
 	line-height: 1.7em;
 }
 
 form {
   padding: 30px;
   margin: 0 0 20px; 
-  background-color: rgba(40, 44, 42, 0.8);
-  color: #fff;
   border-solid: 20px;
   }
   
 p {
-  font-size: 1.1em;
-  line-height: 1.7em; 
   color: white;
   background-color: rgba(40, 44, 42, 0.8)}
   
@@ -112,7 +95,7 @@ p {
 
 /* Header */
 .hero-unit{
-background: rgba(0, 0, 0, 0.5);
+  background-color: transparent;
 margin-left: 60px;
 margin-right: 60px;
 margin-bottom: 30px;
@@ -138,6 +121,19 @@ margin-top: 10px;
   .nav {
     color: #fff;
   }
+}
+
+.btn {
+  background-image: none;
+  background-color: none;
+}
+
+.btn-primary {
+  background-color: $blue-accent;
+}
+
+.btn-primary:hover {
+  background-color: $dark-blue-accent;
 }
 
 .navbar-inverse .nav > li > a {

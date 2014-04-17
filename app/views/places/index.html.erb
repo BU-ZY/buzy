@@ -2,18 +2,13 @@
 <h1>The Locations:</h1>
 
 <% @places.each do |place| %>
-	<div class="panel" id="companies">
-		<div class="content">
-			<h4 class="companies-title"></h4>
-			<a href="\places/<%= place.id %>/60">
-			<div class="company-wrapper-outer">
-					<div class="company-wrapper-inner">
-						<%= place.name%>
-					</div>
+	<a href="\places/<%= place.id %>/60">
+		<div id="places">
+			<div class="place">
+				<%= place.name%>
 			</div>
-			</a>
 		</div>
-	</div>
+	</a>
 <% end %>
 
 <div class="center hero-unit">

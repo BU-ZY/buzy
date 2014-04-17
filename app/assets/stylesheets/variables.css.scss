@@ -1,0 +1,12 @@
+$red-accent: #CC0000;
+$green-accent: #a7df38;
+$dark-green-accent: #7fbe00;
+$blue-accent: #2fbdbd;
+$dark-blue-accent: #007a7a;
+
+@mixin rounded {
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+      -ms-border-radius: 4px;
+          border-radius: 4px;
+}
