@@ -7,8 +7,6 @@
 
       <%= f.label :name %>
       <%= f.text_field :name %>
-      <%= f.hidden_field :latitude %>
-       <%= f.hidden_field :longitude %>
 
       <%= f.submit "Create a new location", class: "btn btn-large btn-primary" %>
     <% end %>
@@ -16,6 +14,9 @@
 
   </div>
 </div>
+
+<!--
+**Potential future work for Geotagging places
 
 <script type="text/javascript">
 
@@ -39,3 +40,4 @@ navigator.geolocation.getCurrentPosition(function(position){
 	
 }
 </script>
+-->

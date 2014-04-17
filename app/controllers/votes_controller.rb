@@ -1,5 +1,6 @@
 class VotesController < ApplicationController
-  before_action :signed_in_user, only: [:new,:create]
+  # ***DISABLING SIGN IN FOR DEV***
+  #before_action :signed_in_user, only: [:new,:create]
   
   def new
   	@vote = Vote.new
