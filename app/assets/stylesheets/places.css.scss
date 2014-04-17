@@ -17,4 +17,7 @@
 	display: inline-block;
 	margin: 5px;
 	@include rounded;
+	a:hover {
+		text-decoration: none;
+	}
 }
