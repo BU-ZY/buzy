@@ -8,7 +8,7 @@
 	<div id="choices">
 		<% @places.each do |place| %>
 			<a href="\places/<%= place.id %>/60">
-				<div class="choice"><%= place.name%></div>
+				<div class="choice""><%= place.name%><br/><%= place.score %></div>
 			</a>
 		<% end %>
 	</div>

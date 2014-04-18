@@ -19,3 +19,7 @@
 	margin: 5px;
 	@include rounded;
 }
+
+#choices .choice:hover {
+	background-color: $dark-red-accent;
+}

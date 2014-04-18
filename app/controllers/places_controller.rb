@@ -20,7 +20,6 @@ class PlacesController < ApplicationController
   end
 
   def score(votes) #unless a time_ago in minutes is passed, scores all votes
-
     now = Time.new
   
     total_time_ago = 0 
@@ -59,7 +58,6 @@ class PlacesController < ApplicationController
   end
 
   def create
-
     if Place.where(:name => place_params[:name]).blank? #check if a place with that name exists
       @place = Place.new(place_params)
       if @place.save
@@ -75,6 +73,9 @@ class PlacesController < ApplicationController
 
   def index
     @places = Place.all
+    @places.each do |place| #refresh each place's scores
+      place.score = score(place.votes)
+    end
   end
 
   private
