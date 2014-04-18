@@ -4,6 +4,11 @@
 	  <h2>
 	  	The place to go when you want to know what's busy and whats buzzing on campus
 	  </h2>
+	  <h3>Today BU's busyness score is
+	  	<span style="color: <%= @average_score_color %>;">
+	  		<%= @average_score %>
+	  	</span>
+	  </h3>
 
 	  <%= link_to "Places", '/places', class: "btn btn-large btn-primary" %> <%= link_to "Vote", '/vote', class: "btn btn-large btn-primary" %>
 </div>
