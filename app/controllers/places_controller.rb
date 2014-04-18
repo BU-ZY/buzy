@@ -3,38 +3,6 @@ class PlacesController < ApplicationController
   # ***DISABLING SIGN IN FOR DEV***
   #before_action :signed_in_user, only: [:new]
 
-  def busyness_color(score)
-    case score
-      when 0..33
-        @color = '#66CC00'
-      when 34..66
-        @color = '#FF9933'
-      else
-        @color = '#FF0000'
-    end
-    @color
-  end
-
-  def votes_to_count(time_ago)
-    @place.votes.select {|vote| ((time_ago/60).round.hour.ago) < vote[:created_at] }
-  end
-
-  def score(votes) #unless a time_ago in minutes is passed, scores all votes
-    now = Time.new
-  
-    total_time_ago = 0 
-    votes.each do |vote| #total times ago
-      total_time_ago += now - vote.created_at
-    end
-    
-    @total = 0
-    votes.each do |vote| #calc weighted average
-      time_ago = (now-vote.created_at)
-      @total += (vote.score*(time_ago/total_time_ago)).round
-    end
-    @total 
-  end
-
   def new
   	@place = Place.new
   end
@@ -47,11 +15,11 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
     @time_ago = params[:time_ago] ? params[:time_ago].to_i : 60
     unless @place.votes.blank?
-      votes = !@time_ago.blank? ? votes_to_count(@time_ago) : @place.votes
-      @score = score(votes)==0 ? 50 : score(votes)
-      @color = busyness_color(@score)
+      votes = !@time_ago.blank? ? view_context.votes_within(@place.votes, @time_ago) : @place.votes
+      @score = view_context.score(votes)
+      @color = view_context.busyness_color(@score)
       @graphable  = graphable_votes(votes)
-      # ***DISABLING USER TRACKING FOR DEV***
+      # ***DISABLING USER TRACKING FOR DEV*** <- damn you
       #@username = current_user.name
       @username = "Public"
     end
@@ -72,12 +40,7 @@ class PlacesController < ApplicationController
   end
 
   def index
-    places = Place.all
-    @places_and_colors = []
-    places.each do |place| #refresh each place's scores
-      place.score = score(place.votes)
-      @places_and_colors << [place, busyness_color(place.score)]
-    end
+    @places_and_colors = view_context.places_and_colors
   end
 
   private
