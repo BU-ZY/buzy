@@ -72,9 +72,11 @@ class PlacesController < ApplicationController
   end
 
   def index
-    @places = Place.all
-    @places.each do |place| #refresh each place's scores
+    places = Place.all
+    @places_and_colors = []
+    places.each do |place| #refresh each place's scores
       place.score = score(place.votes)
+      @places_and_colors << [place, busyness_color(place.score)]
     end
   end
 
