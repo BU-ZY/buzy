@@ -8,7 +8,7 @@
 	<div id="choices">
 		<% @places_and_colors.each do |place, color| %>
 			<a href="\places/<%= place.id %>/60">
-				<div class="choice" style="background-color:<%= color %> ;">
+				<div class="square choice" style="background-color:<%= color %> ;">
 					<%= place.name%>
 					<h3><%= place.score %></h3>
 				</div>
