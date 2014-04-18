@@ -5,17 +5,42 @@
   <div class="span6 offset3">
     <%= simple_form_for(@vote) do |f| %>
 
-      <%= f.label :score %>
-      <%= f.text_field :score %>
-
+      <%= f.hidden_field :score, id: 'hidden-score' %>
      <pgit stat>
   		<%= f.input :place_id, collection: Place.all, prompt: "Select a Place"%>
 	</p>
     
-    <%= f.submit "Quiet", class: "btn btn-large btn-primary" %> <%= f.submit "Moderate", class: "btn btn-large btn-primary" %> <%= f.submit "Busy", class: "btn btn-large btn-primary" %>
+    <%= f.submit "Quiet", class: "btn btn-large btn-primary", id: 'quiet' %> <%= f.submit "Moderate", class: "btn btn-large btn-primary", id: 'moderate' %> <%= f.submit "Busy", class: "btn btn-large btn-primary", id: 'busy' %>
 
     <% end %>
 
   </div>
 </div>
 </div>
+
+
+
+<script type="text/javascript">
+$( document ).ready(function() {
+
+  $('#quiet').click(function(e) {
+    e.preventDefault();
+    $('#hidden-score').val('1');
+    $('#new_vote').submit();
+  })
+
+  $('#moderate').click(function(e) {
+    e.preventDefault();
+    $('#hidden-score').val('50');
+    $('#new_vote').submit();
+  })
+
+  $('#busy').click(function(e) {
+    e.preventDefault();
+    $('#hidden-score').val('100');
+    $('#new_vote').submit();
+  })
+
+})
+
+</script>
