@@ -3,7 +3,6 @@ class PlacesController < ApplicationController
   # ***DISABLING SIGN IN FOR DEV***
   #before_action :signed_in_user, only: [:new]
 
-
   def new
   	@place = Place.new
   end
@@ -16,9 +15,9 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
     @time_ago = params[:time_ago] ? params[:time_ago].to_i : 60
     unless @place.votes.blank?
-      votes = !@time_ago.blank? ? votes_within(@place.votes, @time_ago) : @place.votes
-      @score = score(votes)==0 ? 50 : score(votes)
-      @color = busyness_color(@score)
+      votes = !@time_ago.blank? ? view_context.votes_within(@place.votes, @time_ago) : @place.votes
+      @score = view_context.score(votes)
+      @color = view_context.busyness_color(@score)
       @graphable  = graphable_votes(votes)
       # ***DISABLING USER TRACKING FOR DEV*** <- damn you
       #@username = current_user.name
