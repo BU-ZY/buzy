@@ -7,7 +7,7 @@
 
       <%= f.hidden_field :score, id: 'hidden-score' %>
      <pgit stat>
-  		<%=f.input :place_id, collection: Place.all, prompt: "Select a Place"%>
+  		<%= f.input :place_id, collection: Place.all, prompt: "Select a Place"%>
 	</p>
     
     <%= f.submit "Quiet", class: "btn btn-large btn-primary", id: 'quiet' %> <%= f.submit "Moderate", class: "btn btn-large btn-primary", id: 'moderate' %> <%= f.submit "Busy", class: "btn btn-large btn-primary", id: 'busy' %>

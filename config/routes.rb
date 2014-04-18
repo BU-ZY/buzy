@@ -23,6 +23,7 @@ Buzy::Application.routes.draw do
   match 'places/:id/:time_ago', to: 'places#show', via: 'get'
   match 'places/:id/?q=:time_ago&submit=look', to: 'places#show', via: 'get'
   match 'places/:id/', to: 'places#show', via: 'post'
+  match 'places/:id/vote', to: 'votes#new', via: 'post'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

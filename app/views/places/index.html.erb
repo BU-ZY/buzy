@@ -6,9 +6,12 @@
 
 <div class="row">
 	<div id="choices">
-		<% @places.each do |place| %>
+		<% @places_and_colors.each do |place, color| %>
 			<a href="\places/<%= place.id %>/60">
-				<div class="choice"><%= place.name%></div>
+				<div class="choice" style="background-color:<%= color %> ;">
+					<%= place.name%>
+					<%= place.score %>
+				</div>
 			</a>
 		<% end %>
 	</div>

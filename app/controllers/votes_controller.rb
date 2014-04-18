@@ -4,12 +4,14 @@ class VotesController < ApplicationController
   
   def new
   	@vote = Vote.new
+    if params[:id]
+      @place = params[:id]
+    end
   end
 
   def show
   	@vote = Vote.find(params[:id])
   end
-
 
   def create
     @vote = Vote.new(vote_params)
