@@ -3,6 +3,7 @@ class PlacesController < ApplicationController
   # ***DISABLING SIGN IN FOR DEV***
   #before_action :signed_in_user, only: [:new]
 
+<<<<<<< HEAD
   def busyness_color(score)
     case score
       when 0..33
@@ -47,9 +48,9 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
     @time_ago = params[:time_ago] ? params[:time_ago].to_i : 60
     unless @place.votes.blank?
-      votes = !@time_ago.blank? ? votes_within(@place.votes, @time_ago) : @place.votes
-      @score = score(votes)==0 ? 50 : score(votes)
-      @color = busyness_color(@score)
+      votes = !@time_ago.blank? ? view_context.votes_within(@place.votes, @time_ago) : @place.votes
+      @score = view_context.score(votes)
+      @color = view_context.busyness_color(@score)
       @graphable  = graphable_votes(votes)
       # ***DISABLING USER TRACKING FOR DEV*** <- damn you
       #@username = current_user.name
@@ -72,6 +73,7 @@ class PlacesController < ApplicationController
   end
 
   def index
+<<<<<<< HEAD
     places = Place.all
     @places_and_colors = []
     places.each do |place| #refresh each place's scores
@@ -79,6 +81,9 @@ class PlacesController < ApplicationController
       place.score = score(place.votes)
       @places_and_colors << [place, busyness_color(place.score)]
     end
+=======
+    @places_and_colors = view_context.places_and_colors
+>>>>>>> ed69f651dad80877c0c87afa5257b0381c1ec410
   end
 
   private

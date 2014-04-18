@@ -17,6 +17,8 @@
 	background-color: $red-accent;
 	display: inline-block;
 	margin: 5px;
+	height: 5em;
+	min-width: 5em;
 	@include rounded;
 }
 
