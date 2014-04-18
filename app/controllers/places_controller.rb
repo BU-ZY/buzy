@@ -15,8 +15,8 @@ class PlacesController < ApplicationController
     @color
   end
 
-  def votes_to_count(time_ago)
-    @place.votes.select {|vote| ((time_ago/60).round.hour.ago) < vote[:created_at] }
+  def votes_within(votes,time_ago)
+    votes.select {|vote| ((time_ago/60).round.hour.ago) < vote[:created_at] }
   end
 
   def score(votes) #unless a time_ago in minutes is passed, scores all votes
@@ -47,11 +47,11 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
     @time_ago = params[:time_ago] ? params[:time_ago].to_i : 60
     unless @place.votes.blank?
-      votes = !@time_ago.blank? ? votes_to_count(@time_ago) : @place.votes
+      votes = !@time_ago.blank? ? votes_within(@place.votes, @time_ago) : @place.votes
       @score = score(votes)==0 ? 50 : score(votes)
       @color = busyness_color(@score)
       @graphable  = graphable_votes(votes)
-      # ***DISABLING USER TRACKING FOR DEV***
+      # ***DISABLING USER TRACKING FOR DEV*** <- damn you
       #@username = current_user.name
       @username = "Public"
     end
@@ -75,6 +75,7 @@ class PlacesController < ApplicationController
     places = Place.all
     @places_and_colors = []
     places.each do |place| #refresh each place's scores
+      #place.score = score(votes_within(place.votes, 60))
       place.score = score(place.votes)
       @places_and_colors << [place, busyness_color(place.score)]
     end
