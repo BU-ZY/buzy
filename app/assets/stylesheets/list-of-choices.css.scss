@@ -17,9 +17,12 @@
 	background-color: $red-accent;
 	display: inline-block;
 	margin: 5px;
+	@include rounded;
+}
+
+#choices .choice.square {
 	height: 5em;
 	min-width: 5em;
-	@include rounded;
 }
 
 #choices .choice:hover {
