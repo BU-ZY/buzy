@@ -18,6 +18,7 @@ group :development, :test do
   gem 'spork-rails', '4.0.0'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'byebug'
 end
 
 group :test do
