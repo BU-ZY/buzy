@@ -1,5 +1,4 @@
 @import "bootstrap";
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 @import "variables";
 
 /* Universal */
@@ -14,6 +13,8 @@ body {
   white-space:0!important;
   word-wrap:break-word;
 }
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
  body {
  	padding-top: 60px;

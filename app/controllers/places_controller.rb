@@ -4,6 +4,8 @@ class PlacesController < ApplicationController
   #before_action :signed_in_user, only: [:new]
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
   def busyness_color(score)
     case score
       when 0..33
@@ -36,6 +38,7 @@ class PlacesController < ApplicationController
     @total 
   end
 
+>>>>>>> c7f8c338482a16ff53a3a841f88c41437b9ebc5f
   def new
   	@place = Place.new
   end
@@ -74,6 +77,9 @@ class PlacesController < ApplicationController
 
   def index
 <<<<<<< HEAD
+    @places_and_colors = view_context.places_and_colors
+=======
+<<<<<<< HEAD
     places = Place.all
     @places_and_colors = []
     places.each do |place| #refresh each place's scores
@@ -84,6 +90,7 @@ class PlacesController < ApplicationController
 =======
     @places_and_colors = view_context.places_and_colors
 >>>>>>> ed69f651dad80877c0c87afa5257b0381c1ec410
+>>>>>>> c7f8c338482a16ff53a3a841f88c41437b9ebc5f
   end
 
   private
