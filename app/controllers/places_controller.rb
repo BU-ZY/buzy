@@ -20,49 +20,6 @@ class PlacesController < ApplicationController
     votes.select {|vote| ((time_ago/60).round.hour.ago) < vote[:created_at] }
   end
 
-  def score(which_votes=nil) #unless a time_ago in minutes is passed, scores all votes
-    delete_old_votes
-    now = Time.new
-
-    votes = which_votes ? which_votes : Vote.where(place_id: params[:id])
-
-    past_votes = votes.select{|vote| vote.created_at <= (Time.now - 5.minutes)}
-    recent_votes = votes.select{|vote| vote.created_at >= (Time.now - 5.minutes)}
-
-    recent_avg = recent_votes.inject(0){|sum, v| sum += v.score}.to_f
-    recent_avg /= recent_votes.length unless recent_avg==0
-    past_avg = past_votes.inject(0){|sum, v| sum += v.score}.to_f
-    past_avg /= past_votes.length unless past_avg==0
-
-    if past_votes.empty? && recent_votes.empty?
-      return 50
-    elsif past_votes.empty?
-      return recent_avg
-    elsif recent_votes.empty?
-      return past_avg
-    elsif !past_votes.empty? && !recent_votes.empty?
-      return (past_avg + recent_avg)/2    
-    end
-  end
-
-  def score2(votes) #unless a time_ago in minutes is passed, scores all votes
-    
-    now = Time.new
-  
-    total_time_ago = 0 
-    votes.each do |vote| #total times ago
-      total_time_ago += now - vote.created_at
-    end
-    
-    @total = 0
-    votes.each do |vote| #calc weighted average
-      time_ago = (now-vote.created_at)
-      #@total += (vote.score*(time_ago/total_time_ago)).round
-      @total += (vote.score)
-    end
-    @total 
-  end
-
   def new
   	@place = Place.new
   end
