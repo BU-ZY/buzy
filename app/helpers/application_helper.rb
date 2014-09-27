@@ -22,7 +22,6 @@ module ApplicationHelper
 
   def update_scores
 		Place.all.each do |place| #refresh each place's scores
-      #place.update_attribute(:score, score(votes_within(place.votes, 60)))
       place.update_attribute(:score, score(place.votes))
     end
   end
@@ -31,19 +30,31 @@ module ApplicationHelper
     votes.select {|vote| ((time_ago/60).round.hour.ago) < vote[:created_at]}
   end
 
-  def score(votes) #calculates a time-weighted average of a set of votes
+  def delete_old_votes
+    Vote.where("created_at <= ?", Time.now - 1.hour).each{|vote| vote.destroy}
+  end
+
+  def score(id=nil, opts={}) #unless a time_ago in minutes is passed, scores all votes
+    delete_old_votes
     now = Time.new
-  
-    total_time_ago = 0 
-    votes.each do |vote| #total times ago
-      total_time_ago += now - vote.created_at
+
+    votes = opts[:which_votes] ? opts[:which_votes] : Vote.where(place_id: id)
+    past_votes = votes.select{|vote| vote.created_at <= (Time.now - 5.minutes)}
+    recent_votes = votes.select{|vote| vote.created_at >= (Time.now - 5.minutes)}
+
+    recent_avg = recent_votes.inject(0){|sum, v| sum += v.score}.to_f
+    recent_avg /= recent_votes.length unless recent_avg==0
+    past_avg = past_votes.inject(0){|sum, v| sum += v.score}.to_f
+    past_avg /= past_votes.length unless past_avg==0
+
+    if past_votes.empty? && recent_votes.empty?
+      return 50
+    elsif past_votes.empty?
+      return recent_avg
+    elsif recent_votes.empty?
+      return past_avg
+    elsif !past_votes.empty? && !recent_votes.empty?
+      return (past_avg + recent_avg)/2    
     end
-    
-    @total = 0
-    votes.each do |vote| #calc weighted average
-      time_ago = (now-vote.created_at)
-      @total += (vote.score*((total_time_ago-time_ago+1)/total_time_ago)).round #weight more recent votes more
-    end
-    votes.length>0 ? @total/votes.length : 50 #return an average, 50 by default
   end
 end
