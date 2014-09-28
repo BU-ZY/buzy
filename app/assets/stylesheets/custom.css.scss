@@ -132,15 +132,6 @@ p {
   background-color: $dark-blue-accent;
 }
 
-.btn.circular-vote {
-  border-radius: 50% !important;
-  behavior: url(PIE.htc); /* remove if you don't care about IE8 */
-  height: 50px !important;
-  width: 50px;
-  overflow: hidden;
-  color: transparent !important;
-}
-
 .btn.green {
   background-color: $green;
 }
