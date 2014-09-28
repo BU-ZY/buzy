@@ -6,13 +6,10 @@ class StaticPagesController < ApplicationController
   end
 
   def map
-  	file = File.open(File.join(Rails.root, 'app', 'assets', 'json', 'locations.json')).read
-  	@json = JSON.parse(file)
-  	@addresses = @json.map{|e| e['address']}
-  	@address_array = @json.map{|e| e['address']}.join("','").prepend("'")<< ("'")
-  	@address_array2 = eval(@json.map{|e| "#{e['address']}"}.to_s)
-  	@json_array = @json.map{|e| e['address']}.to_json
-  	raise "hi"
+  	@file = File.open(File.join(Rails.root, 'app', 'assets', 'json', 'locations.json')).read
+  	json = JSON.parse(@file)
+  	@center_lat = json.find{|p| p['name'] == 'CENTER'}['lat']
+  	@center_long = json.find{|p| p['name'] == 'CENTER'}['long']
   	render 'map'
   end
 end

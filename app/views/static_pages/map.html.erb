@@ -1,28 +1,23 @@
 <title>Bike Accidents</title>
-<link rel="stylesheet" href="style.css" type="text/css" media="screen">
-
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript">// <![CDATA[
-	$(document).ready(function(){
+$(document).ready(function(){
 
 	var myOptions = {
 		// center: new google.maps.LatLng(42.39100860920504,-71.3232421875),//
-		center: new google.maps.LatLng(<%= @json.find{|p| p['name'] == 'CENTER'}['lat'] %>, <%= @json.find{|p| p['name'] == 'CENTER'}['long'] %>),
-		zoom: 15,
+		center: new google.maps.LatLng(<%= @center_lat %>, <%= @center_long %>),
+		zoom: 14,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 
 	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-	});
-	
-	//var addressArray = new Array("41 Green Ln, Handsworth, Birmingham, West Midlands B21 0DE, UK","BT27 4SB","Norwich");
 	var geocoder = new google.maps.Geocoder();
-	var array = new Array("<%= raw @addresses %>")
+	var array = new Array(JSON.parse('<%= raw @file %>'))[0];
 	console.log(array);
 	for (var i = 0; i < array.length; i++) {
-		geocoder.geocode({ 'address': array[i]['address']}, function(results, status) {
+		geocoder.geocode({ 'address': array[i]["address"]}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				var marker = new google.maps.Marker({
 					map: map,
@@ -33,12 +28,14 @@
 			}
 		});
 	}
+});
+	
 
 </script>
 
 <style>
 #map_canvas {
-	width: 500px;
+	width: 100%;
 	height: 500px;
 }
 </style>
