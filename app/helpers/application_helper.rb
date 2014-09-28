@@ -34,11 +34,14 @@ module ApplicationHelper
     Vote.where("created_at <= ?", Time.now - 1.hour).each{|vote| vote.destroy}
   end
 
+  def recent_votes
+    Vote.where("created_at <= ?", Time.now - 1.hour)
+  end
+
   def score(id=nil, opts={}) #unless a time_ago in minutes is passed, scores all votes
-    delete_old_votes
     now = Time.new
 
-    votes = opts[:which_votes] ? opts[:which_votes] : Vote.where(place_id: id)
+    votes = opts[:which_votes] ? opts[:which_votes] : recent_votes.where(place_id: id)
     past_votes = votes.select{|vote| vote.created_at <= (Time.now - 5.minutes)}
     recent_votes = votes.select{|vote| vote.created_at >= (Time.now - 5.minutes)}
 
