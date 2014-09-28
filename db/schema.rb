@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140927202853) do
+ActiveRecord::Schema.define(version: 20140928021425) do
 
   create_table "places", force: true do |t|
     t.string   "name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140927202853) do
     t.string   "latitude"
     t.string   "longitude"
     t.integer  "score"
+    t.string   "location",   default: ""
   end
 
   add_index "places", ["score"], name: "index_places_on_score"

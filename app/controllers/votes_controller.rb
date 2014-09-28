@@ -7,6 +7,7 @@ class VotesController < ApplicationController
     if params[:id]
       @place = params[:id]
     end
+    @place.
   end
 
   def show
