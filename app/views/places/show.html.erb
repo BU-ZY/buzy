@@ -1,8 +1,6 @@
 <!-- display place names, display each vote for the place -->
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
-
-
 <center>
 <h1><a href="/places"> &#8592; </a><%= @place.name %></h1>
 <% if @place.votes.blank? %>
@@ -32,7 +30,7 @@
 	-->
 
 <% end %>
-
+<%= render 'votes/form'  %> 
 <%= line_chart @graphable %>
 
 <h2>How far back to check (minutes)?</h2>
