@@ -1,7 +1,7 @@
 <title>Bike Accidents</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript">// <![CDATA[
+<script type="text/javascript">
 $(document).ready(function(){
 
 	var myOptions = {
@@ -42,9 +42,6 @@ $(document).ready(function(){
 	}
 
 	for (var i = 0; i < addressArray.length; i++) {
-		console.log(addressArray[i]);
-		console.log(namesArray[i]);
-		console.log(i);
 		add_marker(i);
 	}
 });
