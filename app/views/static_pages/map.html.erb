@@ -14,10 +14,9 @@ $(document).ready(function(){
 	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
 	var geocoder = new google.maps.Geocoder();
-	var array = new Array(JSON.parse('<%= raw @file %>'))[0];
-	console.log(array);
+	var array = <%= raw @locations %>;
 	for (var i = 0; i < array.length; i++) {
-		geocoder.geocode({ 'address': array[i]["address"]}, function(results, status) {
+		geocoder.geocode({ 'address': array[i]}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				var marker = new google.maps.Marker({
 					map: map,

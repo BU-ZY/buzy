@@ -17,8 +17,6 @@ ActiveRecord::Schema.define(version: 20140928021425) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "latitude"
-    t.string   "longitude"
     t.integer  "score"
     t.string   "location",   default: ""
   end

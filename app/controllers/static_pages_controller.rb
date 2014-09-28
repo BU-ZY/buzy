@@ -6,10 +6,11 @@ class StaticPagesController < ApplicationController
   end
 
   def map
-  	@file = File.open(File.join(Rails.root, 'app', 'assets', 'json', 'locations.json')).read
-  	json = JSON.parse(@file)
+  	file = File.open(File.join(Rails.root, 'app', 'assets', 'json', 'locations.json')).read
+  	json = JSON.parse(file)
   	@center_lat = json.find{|p| p['name'] == 'CENTER'}['lat']
   	@center_long = json.find{|p| p['name'] == 'CENTER'}['long']
+  	@locations = Place.all.select{|p| p.location != ""}.map{|p| p.location}
   	render 'map'
   end
 end
