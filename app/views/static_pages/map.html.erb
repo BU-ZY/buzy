@@ -5,7 +5,6 @@
 $(document).ready(function(){
 
 	var myOptions = {
-		// center: new google.maps.LatLng(42.39100860920504,-71.3232421875),//
 		center: new google.maps.LatLng(<%= @center_lat %>, <%= @center_long %>),
 		zoom: 14,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -13,19 +12,40 @@ $(document).ready(function(){
 
 	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-	var geocoder = new google.maps.Geocoder();
-	var array = <%= raw @locations %>;
-	for (var i = 0; i < array.length; i++) {
-		geocoder.geocode({ 'address': array[i]}, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				var marker = new google.maps.Marker({
-					map: map,
-					position: results[0].geometry.location
-				});
-			} else {
-				alert("Geocode was not successful for the following reason: " + status);
-			}
-		});
+	var addressArray = new Array(<%= raw @addresses %>)[0];
+	var scoresArray = new Array(<%= raw @scores %>)[0];
+	var namesArray = new Array(<%= raw @names %>)[0];
+	var infoWindow = new google.maps.InfoWindow({content: ''});
+
+	function add_marker(i) {
+		// add marker to page
+	    var marker = new google.maps.Marker({
+	    	map: map, 
+	    	position: new google.maps.LatLng(addressArray[i][0],addressArray[i][1])
+	    });
+	    // set note text
+	    marker.note = namesArray[i] + ": " + scoresArray[i];
+	    // set marker color
+		if (scoresArray[i] < 33) {
+			marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+		} else if (scoresArray[i] > 66) {
+			marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+		} else {
+			marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+		}
+		// add click listener to display the note
+	    google.maps.event.addListener(marker, 'click', function() {
+	        infoWindow.content = this.note;
+	        infoWindow.open(this.getMap(), this);
+	    });
+	    return marker;
+	}
+
+	for (var i = 0; i < addressArray.length; i++) {
+		console.log(addressArray[i]);
+		console.log(namesArray[i]);
+		console.log(i);
+		add_marker(i);
 	}
 });
 	
