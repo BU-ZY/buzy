@@ -4,7 +4,7 @@
 <center>
 <h1><a href="/places"> &#8592; </a><%= @place.name %></h1>
 <% if @place.votes.blank? %>
-	<h2>this place doesn't have any votes!</h2>
+	<h2>No recent votes!</h2>
 <% else %>
 	<h2>Buzzy score for the past <%= @time_ago %> minutes</h2>
 
@@ -30,13 +30,6 @@
 	-->
 
 <% end %>
-<%= render 'votes/form'  %> 
-<%= line_chart @graphable %>
-
-<h2>How far back to check (minutes)?</h2>
-<%= form_for @place, :html => {:method => :post} do |f| %>
-	<div class="text-box" style="width: 100px;"><%= text_field_tag(:time_ago) %></div>
-  <%= f.submit "Check" %>
-<% end %>
-
+	<%= render 'votes/form'  %> 
+	<%= line_chart @graphable %>
 </center>

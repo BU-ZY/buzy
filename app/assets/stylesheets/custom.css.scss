@@ -35,9 +35,9 @@ textarea {
 
 .hero-unit h1 {
   width: 50%;
-   margin-left:auto;
+  margin-left:auto;
   margin-right:auto;
-  }
+}
 
 #content {
     width:100%;
@@ -90,11 +90,12 @@ p {
 	*padding-left: 20px;
 	}
 
+  .btn
+
 
 /* Header */
-.hero-unit{
-  background-color: transparent;
-
+.hero-unit {
+  background-color: transparent !important;
 }
 
 .navbar .container {
@@ -129,6 +130,27 @@ p {
 
 .btn-primary:hover {
   background-color: $dark-blue-accent;
+}
+
+.btn.circular-vote {
+  border-radius: 50% !important;
+  behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+  height: 50px !important;
+  width: 50px;
+  overflow: hidden;
+  color: transparent !important;
+}
+
+.btn.green {
+  background-color: $green;
+}
+
+.btn.orange {
+  background-color: $orange;
+}
+
+.btn.red {
+  background-color: $red;
 }
 
 .navbar-inverse .nav > li > a {
