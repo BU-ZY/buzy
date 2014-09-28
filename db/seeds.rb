@@ -7,6 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+# Example Heroku restart:
+#     heroku pg:reset DATABASE
+#     heroku run rake db:setup
+# db:setup combines db:migrate and db:seed
+
 # populate Places
 file = File.open(File.join(Rails.root, 'app', 'assets', 'json', 'locations.json')).read
 json = JSON.parse(file)
