@@ -14,7 +14,7 @@ class StaticPagesController < ApplicationController
   	json = JSON.parse(file)
   	@center_lat = json.find{|p| p['name'] == 'CENTER'}['lat'] # find center of map
   	@center_long = json.find{|p| p['name'] == 'CENTER'}['long'] 
-  	selection = Place.all.select{|p| !p.location.nil? && p.location != "" && p.name!= "CENTER"} # find all the actual places
+  	selection = Place.where.not(location: nil).select{|p| p.location != "" && p.name!= "CENTER"} # find all the actual places
   	@addresses = selection.map{|p| p.location.gsub(" ","").split(",")} # 2d array of [lat,long]
   	@scores = selection.map{|p| p.score.to_s}
   	@names = selection.map{|p| p.name}
