@@ -48,13 +48,15 @@ module ApplicationHelper
     past_avg /= past_votes.length unless past_avg==0
 
     if past_votes.empty? && recent_votes.empty?
-      return 50
+      score = 50
     elsif past_votes.empty?
-      return recent_avg
+      score = recent_avg
     elsif recent_votes.empty?
-      return past_avg
+      score = past_avg
     elsif !past_votes.empty? && !recent_votes.empty?
-      return (past_avg + recent_avg)/2    
+      score = (past_avg + recent_avg)/2    
     end
+
+    score.round
   end
 end
