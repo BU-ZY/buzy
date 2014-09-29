@@ -5,7 +5,7 @@
 $(document).ready(function(){
 
 	var myOptions = {
-		center: new google.maps.LatLng(<%= @center_lat %>, <%= @center_long %>),
+		center: new google.maps.LatLng(<%= @center_coords[0] %>, <%= @center_coords[1] %>),
 		zoom: 15,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};

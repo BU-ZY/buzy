@@ -10,8 +10,7 @@ class StaticPagesController < ApplicationController
   	update_scores
   	file = File.open(File.join(Rails.root, 'app', 'assets', 'json', 'locations.json')).read
   	json = JSON.parse(file)
-  	@center_lat = json.find{|p| p['name'] == 'CENTER'}['lat'] # find center of map
-  	@center_long = json.find{|p| p['name'] == 'CENTER'}['long'] 
+  	@center_coords = json.find{|p| p['name'] == 'CENTER'}['location'].gsub(" ","").split(",")
   	selection = Place.where.not(location: nil).select{|p| p.location != ""} # find all the actual places
   	@addresses = selection.map{|p| p.location.gsub(" ","").split(",")} # 2d array of [lat,long]
   	@scores = selection.map{|p| p.score.to_s}
