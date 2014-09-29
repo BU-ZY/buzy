@@ -17,7 +17,7 @@
 	background-color: $blue;
 	display: inline-block;
 	margin: 5px;
-	@include rounded;
+	@include rounded(5px);
 }
 
 #choices .choice.square {

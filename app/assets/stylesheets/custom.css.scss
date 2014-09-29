@@ -19,17 +19,20 @@ textarea {
 .filled {
     background-color: $blue;
     position: relative;
-    height:130px;
+    height: 130px;
     width: 120px;
     display: inline-block;
-    @include rounded;
+    padding: 20px;
+    @include rounded(10px);
 }
 
 .filled > .filler {
     bottom: 0;
+    left: 0;
     position: absolute;
     width: 100%;
     background-color: $green;
+    @include rounded-not-top(10px);
 }
 
 .filled > .overlay {
@@ -38,6 +41,7 @@ textarea {
     position: absolute;
     text-align:center;
     top: 0;
+    left: 0;
 }
 
 .filled > .overlay > .score {
@@ -133,6 +137,7 @@ p {
 }
 
 .jumbotron.red-banner.top {
+  padding-top: 40px;
   margin-top: -60px; /* body padding-top */
 }
 
