@@ -17,14 +17,7 @@
 			<% @places_and_colors.each do |place, color| %>
 				<a href="\places/<%= place.id %>">
 					<div class="filled" >
-					<% case place.score %>
-						<% when 0..33 %>
-							<div class="filler one"></div>
-						<% when 33..66 %>
-							<div class="filler two"></div>
-						<% else %>
-							<div class="filler three"></div>
-					<% end %>
+						<div class="filler" style="height:<%= (place.score/100)*130 %>px;"></div>
 						<div class="overlay">
 							<%= place.name%>
 							<div class="score">

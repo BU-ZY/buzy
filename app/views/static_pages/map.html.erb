@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 	var myOptions = {
 		center: new google.maps.LatLng(<%= @center_lat %>, <%= @center_long %>),
-		zoom: 14,
+		zoom: 15,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 
@@ -40,7 +40,7 @@ $(document).ready(function(){
 	    });
 	    return marker;
 	}
-	
+
 	for (var i = 0; i < addressArray.length; i++) {
 		add_marker(i);
 	}
