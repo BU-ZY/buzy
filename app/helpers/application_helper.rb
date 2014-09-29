@@ -19,18 +19,13 @@ module ApplicationHelper
     @color
   end
 
-  def places_and_colors
-  	update_scores
-  	@places_and_colors = []
-    Place.all.each do |place| #refresh each place's scores
-      @places_and_colors << [place, busyness_color(place.score)]
-    end
-    @places_and_colors
-  end
-
   def update_scores
 		Place.all.each do |place| #refresh each place's scores
-      place.update_attribute(:score, score(place.votes))
+      if place.votes.empty?
+        place.update_attribute(:score, 50)
+      else
+        place.update_attribute(:score, score(place.votes))
+      end
     end
   end
 
@@ -48,6 +43,7 @@ module ApplicationHelper
 
   def score(which_votes=nil) #unless a time_ago in minutes is passed, scores all votes
     votes = which_votes ? which_votes : recent_votes.where(place_id: params[:id])
+    return 50 if votes.empty?
     score = votes.inject(0){|sum, v| sum += v.score}.to_f
     score /= votes.length unless score==0
     score.round

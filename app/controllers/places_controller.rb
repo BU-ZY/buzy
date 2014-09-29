@@ -25,17 +25,15 @@ class PlacesController < ApplicationController
   end
 
   def graphable_votes(votes)
-    votes.map { |x| [x.created_at, x.score]}
+    votes.map {|x| [x.created_at, x.score]}
   end
 
   def show
     @place = Place.find(params[:id])
     @time_ago = params[:time_ago] ? params[:time_ago].to_i : 60
     unless @place.votes.blank?
-      votes = !@time_ago.blank? ? view_context.votes_within(@place.votes, @time_ago) : @place.votes
-      @score = score(votes)
-      @color = busyness_color(@score)
-      @graphable  = graphable_votes(votes)
+      @color = busyness_color(@place.score)
+      @graphable  = graphable_votes(recent_votes)
       @username = "Public"
     end
   end
@@ -56,12 +54,6 @@ class PlacesController < ApplicationController
 
   def index
     @places = Place.all
-    @places_and_colors = []
-    @places.each do |place| #refresh each place's scores
-      place.score = score(place.votes)
-      @places_and_colors << [place, busyness_color(place.score)]
-    end
-    @places_and_colors = places_and_colors
   end
 
   private
