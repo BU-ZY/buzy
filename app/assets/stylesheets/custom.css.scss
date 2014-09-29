@@ -6,8 +6,7 @@ body {
   font-family:'Open Sans',arial,sans-serif;
   white-space:0!important;
   word-wrap:break-word;
-  margin: 0;
-  padding: 0;
+  padding-top: 60px;
 }
 
 section {
@@ -131,6 +130,10 @@ p {
   min-height: 3em;
   padding: 30px;
   text-align: center;
+}
+
+.jumbotron.red-banner.top {
+  margin-top: -60px; /* body padding-top */
 }
 
 .navbar .container {
