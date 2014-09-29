@@ -2,7 +2,7 @@ class CreatePlaces < ActiveRecord::Migration
   def change
     create_table :places do |t|
       t.string :name
-      t.integer :score
+      t.integer :score, :default => 50
 
       t.timestamps
     end
