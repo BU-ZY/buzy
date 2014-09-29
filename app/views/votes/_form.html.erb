@@ -7,9 +7,9 @@
       <%= f.hidden_field :score, id: 'hidden-score' %>
       <%= f.hidden_field :place_id, :value => params[:id] %>
       
-      <%= f.submit "", class: "btn btn-large btn-primary circular-vote green", id: 'quiet' %>
-      <%= f.submit "", class: "btn btn-large btn-primary circular-vote orange", id: 'moderate' %>
-      <%= f.submit "", class: "btn btn-large btn-primary circular-vote red", id: 'busy' %>
+      <%= f.submit "Quiet", class: "btn btn-large btn-primary green", id: 'quiet' %>
+      <%= f.submit "Moderate", class: "btn btn-large btn-primary orange", id: 'moderate' %>
+      <%= f.submit "Busy", class: "btn btn-large btn-primary red", id: 'busy' %>
 
       <% end %>
     </div>

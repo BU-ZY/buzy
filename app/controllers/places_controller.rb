@@ -33,7 +33,7 @@ class PlacesController < ApplicationController
     @time_ago = params[:time_ago] ? params[:time_ago].to_i : 60
     unless @place.votes.blank?
       votes = !@time_ago.blank? ? view_context.votes_within(@place.votes, @time_ago) : @place.votes
-      @score = score(@place.votes)
+      @score = score
       @color = busyness_color(@score)
       @graphable  = graphable_votes(votes)
       # ***DISABLING USER TRACKING FOR DEV*** <- damn you

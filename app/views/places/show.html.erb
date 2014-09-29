@@ -10,6 +10,9 @@
 
 	<h1 style= "color:<%= @color %>; font-weight: bold;"><%= @score %></h1>
 
+<% end %>
+	<%= render 'votes/form'  %> 
+
 	<div id="choices">
 		<a href="/places/<%= @place.id %>/60">
 			<div class="choice">last hour</div>
@@ -21,15 +24,5 @@
 			<div class="choice">last week</div>
 		</a>
 	</div>
-
-	<!--
-	<h2><%= @place.name %>'s votes</h2>
-	<% @place.votes.each do |vote| %>
-		<li><%= vote.score %>, <%= time_ago_in_words(vote.created_at) %> ago</li>
-	<% end %>
-	-->
-
-<% end %>
-	<%= render 'votes/form'  %> 
 	<%= line_chart @graphable %>
 </center>
