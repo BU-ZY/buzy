@@ -29,14 +29,24 @@ textarea {
 .center {
   text-align: center;
   h1#title {
-    color: $red-accent;
+    color: $red;
   }
+}
+
+#title.hero-unit {
+  background-color: $red;
+  color: white;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: -1em;
 }
 
 .hero-unit h1 {
   width: 50%;
   margin-left:auto;
   margin-right:auto;
+  color: $red;
 }
 
 #content {
@@ -90,12 +100,19 @@ p {
 	*padding-left: 20px;
 	}
 
-  .btn
-
-
 /* Header */
 .hero-unit {
-  background-color: transparent !important;
+  background-color: transparent;
+}
+
+#home-banner.jumbotron {
+  background-color: $red;
+  color: white;
+  width: 100%;
+  min-height: 3em;
+  margin-top: -1.5em;
+  padding: 30px;
+  text-align: center;
 }
 
 .navbar .container {
@@ -104,7 +121,7 @@ p {
 
 .navbar {
   .navbar-inner {
-    background-color: #CC0000;
+    background-color: $red;
     background-image: none;
     border: none;
   }
@@ -125,7 +142,7 @@ p {
 }
 
 .btn-primary {
-  background-color: $blue-accent;
+  background-color: $blue;
 }
 
 .btn-primary:hover {

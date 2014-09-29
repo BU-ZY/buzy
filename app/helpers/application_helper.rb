@@ -1,12 +1,20 @@
 module ApplicationHelper
 	def busyness_color(score)
-    case score
+    colors = {
+      red: '#C4161B',
+      orange: '#FAA419',
+      green: '#74BF45',
+      blue: '#007CC4',
+      pink: '#FF0060'
+    }
+
+    case score # THESE COLORS SHOULD MATCH WITH CUSTOM.CSS
       when 0..33
-        @color = '#66CC00'
+        @color = colors[:green]
       when 34..66
-        @color = '#FF9933'
+        @color = colors[:orange]
       else
-        @color = '#FF0000'
+        @color = colors[:red]
     end
     @color
   end
@@ -56,7 +64,7 @@ module ApplicationHelper
     elsif !past_votes.empty? && !recent_votes.empty?
       score = (past_avg + recent_avg)/2    
     end
-
+    binding.pry
     score.round
   end
 end

@@ -14,7 +14,7 @@
 #choices .choice {
 	color: white;
 	padding: 10px;
-	background-color: $red-accent;
+	background-color: $blue;
 	display: inline-block;
 	margin: 5px;
 	@include rounded;
@@ -26,5 +26,5 @@
 }
 
 #choices .choice:hover {
-	background-color: $dark-red-accent;
+	background-color: $blue;
 }
