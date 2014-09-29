@@ -19,11 +19,13 @@
       <% flash.each do |key,value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
-      
       <%= yield %>
-      <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
     </div>
+    <% if controller_name == "static_pages" && action_name == "home" %>
+      <%= render 'layouts/infofooter' %>
+    <% end %>
+    <%= render 'layouts/footer' %>
+    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>
 

@@ -6,8 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
-# Example Heroku restart:
+# Example localhost reset and load seed data:
+#     rake db:schema:load
+#     rake db:seed
+#
+# Example Heroku reset and load seed data:
 #     heroku pg:reset DATABASE
 #     heroku run rake db:setup
 # db:setup combines db:migrate and db:seed
@@ -16,5 +19,5 @@
 file = File.open(File.join(Rails.root, 'app', 'assets', 'json', 'locations.json')).read
 json = JSON.parse(file)
 json.each do |p|
-	Place.create(name: p['name'], location:p['location']) unless p['name'] == "CENTER"
+	Place.create(name: p['name'], location:p['location'], score:50) unless p['name'] == "CENTER"
 end

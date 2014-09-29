@@ -26,6 +26,47 @@ textarea {
 	resize: vertical;
 }
 
+.filled {
+    background-color: $blue;
+    position: relative;
+    height:130px;
+    width: 120px;
+    display: inline-block;
+    @include rounded;
+}
+
+.filled > .filler {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    background-color: $green;
+}
+
+.filled > .filler.one {
+  height: 33%;
+}
+
+.filled > .filler.two {
+  height: 66%;
+}
+
+.filled > .filler.three {
+  height: 98%;
+}
+
+.filled > .overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    text-align:center;
+    top: 0;
+}
+
+.filled > .overlay > .score {
+  font-size: 2em;
+  line-height: 1.2em;
+}
+
 .center {
   text-align: center;
   h1#title {
@@ -105,7 +146,7 @@ p {
   background-color: transparent;
 }
 
-#home-banner.jumbotron {
+.jumbotron.red-banner {
   background-color: $red;
   color: white;
   width: 100%;

@@ -15,10 +15,22 @@
 	<div class="row">
 		<div id="choices">
 			<% @places_and_colors.each do |place, color| %>
-				<a href="\places/<%= place.id %>/60">
-					<div class="square choice" style="background-color:<%= color %> ;">
-						<%= place.name%>
-						<h3><%= place.score %></h3>
+				<a href="\places/<%= place.id %>">
+					<div class="filled" >
+					<% case place.score %>
+						<% when 0..33 %>
+							<div class="filler one"></div>
+						<% when 33..66 %>
+							<div class="filler two"></div>
+						<% else %>
+							<div class="filler three"></div>
+					<% end %>
+						<div class="overlay">
+							<%= place.name%>
+							<div class="score">
+								<%= place.score %>
+							</div>
+						</div>
 					</div>
 				</a>
 			<% end %>
