@@ -20,9 +20,9 @@ textarea {
     background-color: $blue;
     position: relative;
     height: 130px;
+    padding: 20px;
     width: 120px;
     display: inline-block;
-    padding: 20px;
     @include rounded(10px);
 }
 

@@ -36,8 +36,6 @@ class PlacesController < ApplicationController
       @score = score
       @color = busyness_color(@score)
       @graphable  = graphable_votes(votes)
-      # ***DISABLING USER TRACKING FOR DEV*** <- damn you
-      #@username = current_user.name
       @username = "Public"
     end
   end
@@ -60,7 +58,6 @@ class PlacesController < ApplicationController
     @places = Place.all
     @places_and_colors = []
     @places.each do |place| #refresh each place's scores
-     # place.score = score(votes_within(place.votes, 60))
       place.score = score(place.votes)
       @places_and_colors << [place, busyness_color(place.score)]
     end
