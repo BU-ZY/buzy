@@ -38,11 +38,10 @@ textarea {
 
 .filled > .overlay {
     height: 100%;
-    width: 100%;
+    width: 75%;
     position: absolute;
     text-align:center;
-    top: 0;
-    left: 0;
+    margin: 0 auto;
 }
 
 .filled > .overlay > .score {
