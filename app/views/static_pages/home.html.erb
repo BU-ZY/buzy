@@ -15,7 +15,7 @@
 			<% @places.each do |place| %>
 				<a href="\places/<%= place.id %>">
 					<div class="filled" >
-						<div class="filler" style="height:<%= (place.score.to_f/100)*170 %>px;"></div>
+						<div class="filler" style="height:<%= (place.score.to_f/100)*170 %>px; min-height: 10px;"></div>
 						<div class="overlay">
 							<%= place.name%>
 							<div class="score">
