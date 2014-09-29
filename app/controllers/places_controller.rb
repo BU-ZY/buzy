@@ -29,6 +29,7 @@ class PlacesController < ApplicationController
   end
 
   def show
+    update_scores(params[:id]) # update the score of just this place
     @place = Place.find(params[:id])
     @time_ago = params[:time_ago] ? params[:time_ago].to_i : 60
     unless @place.votes.blank?
@@ -58,10 +59,9 @@ class PlacesController < ApplicationController
 
   private
 
-    def place_params
-      #params.require(:place).permit(:name, :longitude, :latitude)
-      params.require(:place).permit(:name)
-    end
+    # def place_params
+    #   params.require(:place).permit(:name)
+    # end
 
     # Before filters
 

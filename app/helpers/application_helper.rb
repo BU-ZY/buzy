@@ -19,12 +19,21 @@ module ApplicationHelper
     @color
   end
 
-  def update_scores
-		Place.all.each do |place| #refresh each place's scores
+  def update_scores(id=nil) # updates the score of all places by default, or just the place with the passed id
+    if id
+      place = Place.find(id)
       if place.votes.empty?
         place.update_attribute(:score, 50)
       else
         place.update_attribute(:score, score(place.votes))
+      end
+    else
+  		Place.all.each do |place| #refresh each place's scores
+        if place.votes.empty?
+          place.update_attribute(:score, 50)
+        else
+          place.update_attribute(:score, score(place.votes))
+        end
       end
     end
   end
