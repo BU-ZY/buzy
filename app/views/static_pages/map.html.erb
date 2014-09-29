@@ -24,7 +24,7 @@ $(document).ready(function(){
 	    	position: new google.maps.LatLng(addressArray[i][0],addressArray[i][1])
 	    });
 	    // set note text
-	    marker.note = namesArray[i] + ": " + scoresArray[i];
+	    marker.note = "<a href='/places/" + i + "'>"  + namesArray[i] + "</a>: " + scoresArray[i];
 	    // set marker color
 		if (scoresArray[i] < 33) {
 			marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
