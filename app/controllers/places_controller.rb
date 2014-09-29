@@ -16,10 +16,6 @@ class PlacesController < ApplicationController
     @color
   end
 
-  def votes_within(votes,time_ago)
-    votes.select {|vote| ((time_ago/60).round.hour.ago) < vote[:created_at] }
-  end
-
   def new
   	@place = Place.new
   end
