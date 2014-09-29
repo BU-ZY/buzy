@@ -2,15 +2,14 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
 <center>
-<h1><a href="/places"> &#8592; </a><%= @place.name %></h1>
-<% if @place.votes.blank? %>
-	<h2>No recent votes!</h2>
-<% else %>
-	<h2>Buzzy score for the past <%= @time_ago %> minutes</h2>
+	<h1><a href="/"> &#8592; </a><%= @place.name %></h1>
+	<% if @place.votes.blank? %>
+		<h2>No recent votes!</h2>
+	<% else %>
+		<h2>Buzzy score for the past <%= @time_ago %> minutes</h2>
 
-	<h1 style= "color:<%= @color %>; font-weight: bold;"><%= @score %></h1>
-
-<% end %>
+		<h1 style= "color:<%= @color %>; font-weight: bold;"><%= @score %></h1>
+	<% end %>
 	<%= render 'votes/form'  %> 
 
 	<div id="choices">
