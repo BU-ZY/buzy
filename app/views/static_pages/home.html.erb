@@ -13,8 +13,12 @@
 						<a href="\places/<%= place.id %>">
 							<%= place.name%>
 						</a>
-						<div class="score">
-							<%= place.score %>
+						<div class="score-name">
+							<% if place.score.nil? %>
+								No recent votes!
+							<% else %>
+								<%= busyness_name(place.score) %>
+							<% end %>
 						</div>
 					</div>
 					<div class="voting-form-container">

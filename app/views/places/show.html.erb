@@ -3,7 +3,7 @@
 
 <center>
 	<h1><a href="/"> &#8592; </a><%= @place.name %></h1>
-	<% if @place.votes.blank? %>
+	<% if @place.score.nil? %>
 		<h2>No recent votes!</h2>
 		<h1 style= "color:<%= @color %>; font-weight: bold;"><%= @place.score %></h1>
 	<% else %>
