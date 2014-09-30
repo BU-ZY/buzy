@@ -21,12 +21,14 @@ module ApplicationHelper
 
   def busyness_name(score)
     case score # THESE COLORS SHOULD MATCH WITH CUSTOM.CSS
-      when 0..33
+      when 0..25
         "Not busy"
-      when 34..66
+      when 26..50
+        "Slightly busy"
+      when 51..75
         "Busy"
-      when 66..100
-        "Really busy"
+      when 76..100
+        "Buzzing!"
       else
         "score out of range"
     end

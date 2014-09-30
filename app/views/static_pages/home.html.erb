@@ -8,11 +8,13 @@
 		<div id="choices">
 			<% @places.each do |place| %>
 				<div class="filled" >
-					<div class="filler" style="height:<%= (place.score.to_f/100)*170 %>px; min-height: 10px;"></div>
+					<div class="filler" style="height:<%= (place.score.to_f/100)*240 %>px; min-height: 10px;"></div>
 					<div class="overlay">
-						<a href="\places/<%= place.id %>">
-							<%= place.name%>
-						</a>
+						<div class="place-name">
+							<a href="\places/<%= place.id %>">
+								<%= place.name%>
+							</a>
+						</div>
 						<div class="score-name">
 							<% if place.score.nil? %>
 								No recent votes!

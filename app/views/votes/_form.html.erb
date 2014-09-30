@@ -4,6 +4,8 @@
 
   <%= f.hidden_field :score, id:'hidden-score' %>
   <%= f.hidden_field :place_id, id:'hidden-place' %>
+
+  <div class="vote-call-to-action">vote:</div>
   
     <%= button_tag(type: "submit", class: "borderless-btn voting quiet vote-for-#{place.id}", id:'quiet') do %>
         <%= fa_icon "user 2x" %>
