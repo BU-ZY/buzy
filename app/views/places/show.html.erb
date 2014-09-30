@@ -23,5 +23,7 @@
 			<div class="choice">last week</div>
 		</a>
 	</div>
-	<%= line_chart @graphable %>
+	<% if !@graphable.empty? %>
+		<%= line_chart @graphable %>
+	<% end %>
 </center>
