@@ -27,7 +27,7 @@ class PlacesController < ApplicationController
   def show
     update_scores(params[:id]) # update the score of just this place
     @place = Place.find(params[:id])
-    @time_ago = params[:time_ago] ? params[:time_ago].to_i : 60
+    @time_ago = params[:time_ago] ? params[:time_ago].to_i : 60 # get the time-ago in minutes from the url, if it exists
     unless @place.votes.blank?
       @color = busyness_color(@place.score)
       @graphable  = graphable_votes(recent_votes)

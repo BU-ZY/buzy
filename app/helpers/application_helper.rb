@@ -53,7 +53,7 @@ module ApplicationHelper
    def weighted_score(which_votes=nil) # scores an array of votes if one is passed, otherwise scores just the place with current id
     votes = which_votes ? which_votes : recent_votes.where(place_id: params[:id])
     return 50 if votes.empty?
-    total_length = votes.length
+    total_length = 0
     total_sum = 0
     votes.each do |vote|
       if vote.within?(5) # vote within last 5 minutes
