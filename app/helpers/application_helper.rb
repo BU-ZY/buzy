@@ -19,11 +19,24 @@ module ApplicationHelper
     @color
   end
 
+  def busyness_name(score)
+    case score # THESE COLORS SHOULD MATCH WITH CUSTOM.CSS
+      when 0..33
+        "Not busy"
+      when 34..66
+        "Busy"
+      when 66..100
+        "Really busy"
+      else
+        "score out of range"
+    end
+  end
+
   def update_scores(id=nil) # updates the score of all places by default, or just the place with the passed id
     places = id ? [Place.find(id)] : Place.all
 		places.each do |place| #refresh each place's scores
       if place.votes.empty?
-        place.update_attribute(:score, 50)
+        place.update_attribute(:score, nil)
       else
         place.update_attribute(:score, weighted_score(place.votes))
       end
@@ -45,7 +58,7 @@ module ApplicationHelper
 
    def weighted_score(which_votes=nil) # scores an array of votes if one is passed, otherwise scores just the place with current id
     votes = which_votes ? which_votes : recent_votes.where(place_id: params[:id])
-    return 50 if votes.empty?
+    return nil if votes.empty?
     total_length = 0
     total_sum = 0
     votes.each do |vote|

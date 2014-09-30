@@ -1,10 +1,4 @@
-<div class="center hero-unit">
-<!-- 	<h3>BU's busyness score: 
-		<span style="color: <%= @average_score_color %>;">
-			<%= @average_score %>
-		</span>
-	</h3>
- -->
+<div id="home-screen" class="center hero-unit">
 	<%= link_to "Map", '/map', class: "btn btn-large btn-primary" %>
 
 	<br>
@@ -13,17 +7,24 @@
 	<div class="row-fluid">
 		<div id="choices">
 			<% @places.each do |place| %>
-				<a href="\places/<%= place.id %>">
-					<div class="filled" >
-						<div class="filler" style="height:<%= (place.score.to_f/100)*170 %>px; min-height: 10px;"></div>
-						<div class="overlay">
+				<div class="filled" >
+					<div class="filler" style="height:<%= (place.score.to_f/100)*170 %>px; min-height: 10px;"></div>
+					<div class="overlay">
+						<a href="\places/<%= place.id %>">
 							<%= place.name%>
-							<div class="score">
-								<%= place.score %>
-							</div>
+						</a>
+						<div class="score-name">
+							<% if place.score.nil? %>
+								No recent votes!
+							<% else %>
+								<%= busyness_name(place.score) %>
+							<% end %>
 						</div>
 					</div>
-				</a>
+					<div class="voting-form-container">
+						<%= render 'votes/form', :place => place %>
+					</div>
+				</div>
 			<% end %>
 		</div>
 	</div>

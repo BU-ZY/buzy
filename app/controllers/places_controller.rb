@@ -4,17 +4,6 @@ class PlacesController < ApplicationController
   # ***DISABLING SIGN IN FOR DEV***
   #before_action :signed_in_user, only: [:new]
 
-  def busyness_color(score)
-    case score
-      when 0..33
-        @color = '#66CC00'
-      when 34..66
-        @color = '#FF9933'
-      else
-        @color = '#FF0000'
-    end
-    @color
-  end
 
   def new
   	@place = Place.new
