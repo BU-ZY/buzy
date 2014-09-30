@@ -14,16 +14,12 @@
 ActiveRecord::Schema.define(version: 20140928021117) do
 
   create_table "places", force: true do |t|
-    t.string   "name"
+    t.string   "name",                    null: false
+    t.integer  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "latitude"
-    t.string   "longitude"
-    t.integer  "score"
     t.string   "location",   default: ""
   end
-
-  add_index "places", ["score"], name: "index_places_on_score"
 
   create_table "users", force: true do |t|
     t.string   "name"
