@@ -1,75 +1,64 @@
-<div class="container">
-  <div class="row">
-    <div class="span6 offset3 vote-container">
-      <% @vote = Vote.new %>
-      <%= simple_form_for(@vote) do |f| %>
+<div id="voting-container-for-<%= place.id %>">
+  <% @vote = Vote.new %>
+  <%= simple_form_for(@vote) do |f| %>
 
-      <%= f.hidden_field :score, id: 'hidden-score' %>
-      <%= f.hidden_field :place_id, :value => params[:id] %>
-      
-      <%= button_tag(type: "submit", class: "borderless-btn voting", id: 'quiet') do %>
-          <%= fa_icon "user 2x" %>
-      <% end %>
+  <%= f.hidden_field :score, id:'hidden-score' %>
+  <%= f.hidden_field :place_id, id:'hidden-place' %>
+  
+    <%= button_tag(type: "submit", class: "borderless-btn voting quiet vote-for-#{place.id}", id:'quiet') do %>
+        <%= fa_icon "user 2x" %>
+    <% end %>
 
 
-      <%= button_tag(type: "submit", class: "borderless-btn voting", id: 'moderate') do %>
-          <%= fa_icon "user 2x" %>
-      <% end %>
+    <%= button_tag(type: "submit", class: "borderless-btn voting moderate vote-for-#{place.id}", id:'moderate') do %>
+        <%= fa_icon "user 2x" %>
+    <% end %>
 
 
-      <%= button_tag(type: "submit", class: "borderless-btn voting", id: 'busy') do %>
-         <%= fa_icon "user 2x" %>
-      <% end %>
-
-      <% end %>
-    </div>
-  </div>
+    <%= button_tag(type: "submit", class: "borderless-btn voting busy vote-for-#{place.id}", id:'busy') do %>
+       <%= fa_icon "user 2x" %>
+    <% end %>
+  <% end %>
 </div>
-
 
 
 <script type="text/javascript">
 $( document ).ready(function() {
 
   // on hover
-  $('.voting').hover(function(e) {
-    allButtons = $('.voting');
-    thisIndex = $(this).index();
-    allButtons.each(function(i){
+  $('#voting-container-for-<%= place.id %>').find('.voting').hover(function(e) {
+    allButtons = $('.vote-for-<%= place.id %>');
+    thisIndex = $(this).index(); // index of this button (0,1,2)
+    allButtons.each(function(i){ // loop through the buttons with lower indexes and select them
         if ($(this).index() <= thisIndex) {
-          $(this).css({'background-color':'green'});
+          $(this).addClass('selected');
         }
     });
   })
 
   // mouseleave
-  $('.voting').mouseleave(function(e) {
+  $('.voting').mouseleave(function(e) { // when mouse leaves the div, unselect each button
     allButtons = $('.voting');
     allButtons.each(function(i){
-      $(this).css({'background-color':'transparent'});
+      $(this).removeClass('selected');
     });
   })
 
   // on click
 
-  $('#quiet').click(function(e) {
+  $('.vote-for-<%= place.id %>').click(function(e) {
     e.preventDefault();
-    $('#hidden-score').val('1');
+    var vote = $(this).attr('id');
+    $('#hidden-place').val('<%= place.id %>'); // assign the value for the hidden place_id
+    if (vote == 'busy') { // assign the value for the hidden score
+      $('#hidden-score').val('100');
+    } else if (vote == 'moderate') {
+      $('#hidden-score').val('50');
+    } else if (vote == 'quiet') {
+      $('#hidden-score').val('1');
+    }
     $('#new_vote').submit();
   })
-
-  $('#moderate').click(function(e) {
-    e.preventDefault();
-    $('#hidden-score').val('50');
-    $('#new_vote').submit();
-  })
-
-  $('#busy').click(function(e) {
-    e.preventDefault();
-    $('#hidden-score').val('100');
-    $('#new_vote').submit();
-  })
-
 })
 
 </script>
