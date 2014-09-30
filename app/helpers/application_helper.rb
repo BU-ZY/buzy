@@ -20,41 +20,44 @@ module ApplicationHelper
   end
 
   def update_scores(id=nil) # updates the score of all places by default, or just the place with the passed id
-    if id
-      place = Place.find(id)
+    places = id ? [Place.find(id)] : Place.all
+		places.each do |place| #refresh each place's scores
       if place.votes.empty?
         place.update_attribute(:score, 50)
       else
-        place.update_attribute(:score, score(place.votes))
-      end
-    else
-  		Place.all.each do |place| #refresh each place's scores
-        if place.votes.empty?
-          place.update_attribute(:score, 50)
-        else
-          place.update_attribute(:score, score(place.votes))
-        end
+        place.update_attribute(:score, weighted_score(place.votes))
       end
     end
-  end
-
-  def votes_within(votes,time_ago)
-    votes.select {|vote| ((time_ago/60).round.hour.ago) < vote[:created_at]}
   end
 
   def delete_old_votes
     Vote.where("created_at <= ?", Time.now - 1.hour).each{|vote| vote.destroy}
   end
 
-  def recent_votes
-    Vote.where("created_at >= ?", Time.now - 1.hour)
+  def votes_within(minutes, id=nil) # returns an array of Votes within the last m minutes
+    votes = id ? Vote.where(place_id: id) : Vote.all
+    votes.where("created_at >= ?", Time.now - minutes.minutes)
   end
 
-  def score(which_votes=nil) #unless a time_ago in minutes is passed, scores all votes
+  def recent_votes # arbitrary decision to return all votes within past hour
+    votes_within(60)
+  end
+
+   def weighted_score(which_votes=nil) # scores an array of votes if one is passed, otherwise scores just the place with current id
     votes = which_votes ? which_votes : recent_votes.where(place_id: params[:id])
     return 50 if votes.empty?
-    score = votes.inject(0){|sum, v| sum += v.score}.to_f
-    score /= votes.length unless score==0
-    score.round
+    total_length = 0
+    total_sum = 0
+    votes.each do |vote|
+      if vote.within?(5) # vote within last 5 minutes
+        # weight x5
+        total_length += 5
+        total_sum += vote.score*5
+      else # no weight
+        total_length += 1
+        total_sum += vote.score
+      end
+    end
+    return total_sum/total_length
   end
 end
