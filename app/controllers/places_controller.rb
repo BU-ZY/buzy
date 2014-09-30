@@ -32,7 +32,7 @@ class PlacesController < ApplicationController
       votes = votes_within(@time_ago, params[:id])
       @graphable  = graphable_votes(votes_within(@time_ago, params[:id]))
       @username = "Public"
-      @score = weighted_score(votes)
+      @score = weighted_score(votes) # don't just use place.score!
       @color = busyness_color(@score)
     end
   end
