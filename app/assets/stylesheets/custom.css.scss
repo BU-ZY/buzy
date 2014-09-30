@@ -17,39 +17,6 @@ textarea {
 	resize: vertical;
 }
 
-.filled {
-    background-color: $glass;
-    position: relative;
-    height: 130px;
-    padding: 20px;
-    min-width: 120px;
-    display: inline-block;
-    @include rounded(10px);
-}
-
-.filled > .filler {
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    width: 100%;
-    background-color: $orange;
-    @include rounded-not-top(10px);
-}
-
-.filled > .overlay {
-    height: 100%;
-    width: 75%;
-    position: absolute;
-    text-align:center;
-    margin: 0 auto;
-    color: dimgrey;
-}
-
-.filled > .overlay > .score {
-  font-size: 2em;
-  line-height: 1.2em;
-}
-
 .center {
   text-align: center;
   h1#title {
@@ -128,9 +95,78 @@ p {
 	*padding-left: 20px;
 	}
 
+/* voting on main page */
+
+#home-screen {
+  .filled {
+      background-color: $glass;
+      position: relative;
+      height: 130px;
+      padding: 20px;
+      min-width: 120px;
+      display: inline-block;
+      @include rounded(10px);
+  }
+
+  .filled > .filler {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      width: 100%;
+      background-color: $orange;
+      @include rounded-not-top(10px);
+  }
+
+  .filled > .overlay {
+      height: 100%;
+      width: 75%;
+      position: absolute;
+      text-align:center;
+      margin: 0 auto;   
+  }
+
+  .filled > .overlay > a {
+      color: dimgrey;
+  }
+
+  .filled > .overlay > .score {
+    font-size: 2em;
+    line-height: 1.2em;
+  }
+
+  .filled > .voting-form-container {
+    position: absolute;
+    bottom: 35px;
+    left: 0;
+    width: 100%;
+    height: 30px;
+  }
+}
+
+/* voting buttons */
+
+.borderless-btn, .borderless-btn:active {
+  width: 30px;
+  height: 30px;
+  @include rounded(30px);
+  display: inline-block;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.borderless-btn.selected {
+  background-color: $green;
+}
+
 /* Header */
+
 .hero-unit {
   background-color: transparent;
+}
+
+.jumbotron {
+  text-align: center;
 }
 
 .jumbotron.red-banner {
@@ -138,7 +174,6 @@ p {
   color: white;
   min-height: 3em;
   padding: 30px;
-  text-align: center;
 }
 
 .jumbotron.red-banner.top {
@@ -199,15 +234,6 @@ p {
 
 .btn.red {
   background-color: $red;
-}
-
-.borderless-btn, .borderless-btn:active {
-  width: 50px;
-  height: 50px;
-  @include rounded(50px);
-  background-color: transparent;
-  border: none;
-  outline: none;
 }
 
 .navbar-inverse .nav > li > a {

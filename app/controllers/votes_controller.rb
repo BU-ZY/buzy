@@ -15,9 +15,11 @@ class VotesController < ApplicationController
   end
 
   def create
+    refer_page = URI(request.referer).path
     @vote = Vote.new(vote_params)
     if @vote.save
-      redirect_to place_path(@vote.place)
+      redirect_to refer_page # this takes us back to whatever page the form was submitted on
+      # redirect_to place_path(@vote.place)
     else
       render 'new'
     end
