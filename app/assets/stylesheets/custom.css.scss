@@ -18,7 +18,7 @@ textarea {
 }
 
 .filled {
-    background-color: $blue;
+    background-color: $glass;
     position: relative;
     height: 130px;
     padding: 20px;
@@ -42,6 +42,7 @@ textarea {
     position: absolute;
     text-align:center;
     margin: 0 auto;
+    color: dimgrey;
 }
 
 .filled > .overlay > .score {
