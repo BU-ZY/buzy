@@ -31,7 +31,7 @@ $( document ).ready(function() {
     thisIndex = $(this).index(); // index of this button (0,1,2)
     allButtons.each(function(i){ // loop through the buttons with lower indexes and select them
         if ($(this).index() <= thisIndex) {
-          $(this).addClass('selected');
+          $(this).find('i').css({'color':'green'}); // change the font-awesome icons to green
         }
     });
   })
@@ -40,7 +40,7 @@ $( document ).ready(function() {
   $('.voting').mouseleave(function(e) { // when mouse leaves the div, unselect each button
     allButtons = $('.voting');
     allButtons.each(function(i){
-      $(this).removeClass('selected');
+      $(this).find('i').css({'color':'black'});
     });
   })
 
