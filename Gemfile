@@ -52,4 +52,4 @@ gem 'simple_form'
 gem 'geocode'
 gem 'skeleton-rails'
 gem  'google_static_maps_helper'
-gem 'whenever'
+gem 'whenever', :require => false
