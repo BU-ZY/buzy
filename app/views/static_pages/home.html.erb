@@ -13,13 +13,14 @@
 	<div class="row-fluid">
 		<div id="choices">
 			<% @places.each do |place| %>
+				<% score = weighted_score(votes_within(60, place.id)) %> <!-- use the weighted score -->
 				<a href="\places/<%= place.id %>">
 					<div class="filled" >
-						<div class="filler" style="height:<%= (place.score.to_f/100)*170 %>px; min-height: 10px;"></div>
+						<div class="filler" style="height:<%= (score.to_f/100)*170 %>px; min-height: 10px;"></div>
 						<div class="overlay">
 							<%= place.name%>
 							<div class="score">
-								<%= place.score %>
+								<%= score %>
 							</div>
 						</div>
 					</div>

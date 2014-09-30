@@ -34,20 +34,13 @@ module ApplicationHelper
     Vote.where("created_at <= ?", Time.now - 1.hour).each{|vote| vote.destroy}
   end
 
-  def votes_within(m) # returns an array of Votes within the last m minutes
-    Vote.where("created_at >= ?", Time.now - m.minutes)
+  def votes_within(minutes, id=nil) # returns an array of Votes within the last m minutes
+    votes = id ? Vote.where(place_id: id) : Vote.all
+    votes.where("created_at >= ?", Time.now - minutes.minutes)
   end
 
   def recent_votes # arbitrary decision to return all votes within past hour
     votes_within(60)
-  end
-
-  def score(which_votes=nil) # scores an array of votes if one is passed, otherwise scores just the place with current id
-    votes = which_votes ? which_votes : recent_votes.where(place_id: params[:id])
-    return 50 if votes.empty?
-    score = votes.inject(0){|sum, v| sum += v.score}.to_f
-    score /= votes.length unless score==0
-    score.round
   end
 
    def weighted_score(which_votes=nil) # scores an array of votes if one is passed, otherwise scores just the place with current id

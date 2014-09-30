@@ -25,13 +25,15 @@ class PlacesController < ApplicationController
   end
 
   def show
-    update_scores(params[:id]) # update the score of just this place
+    # update_scores(params[:id]) # update the score of just this place
     @place = Place.find(params[:id])
     @time_ago = params[:time_ago] ? params[:time_ago].to_i : 60 # get the time-ago in minutes from the url, if it exists
     unless @place.votes.blank?
+      votes = votes_within(@time_ago, params[:id])
       @color = busyness_color(@place.score)
-      @graphable  = graphable_votes(recent_votes)
+      @graphable  = graphable_votes(votes_within(@time_ago, params[:id]))
       @username = "Public"
+      @score = weighted_score(votes)
     end
   end
 
@@ -54,10 +56,6 @@ class PlacesController < ApplicationController
   end
 
   private
-
-    # def place_params
-    #   params.require(:place).permit(:name)
-    # end
 
     # Before filters
 
