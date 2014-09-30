@@ -8,6 +8,7 @@ gem 'bcrypt-ruby', '3.1.2'
 gem 'chartkick'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
+gem "font-awesome-rails"
 
 
 group :development, :test do
@@ -52,4 +53,6 @@ gem 'simple_form'
 gem 'geocode'
 gem 'skeleton-rails'
 gem  'google_static_maps_helper'
+<<<<<<< HEAD
 gem 'whenever', :require => false
+

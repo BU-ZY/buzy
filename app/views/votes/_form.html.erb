@@ -1,15 +1,25 @@
 <div class="container">
   <div class="row">
-    <div class="span6 offset3">
+    <div class="span6 offset3 vote-container">
       <% @vote = Vote.new %>
       <%= simple_form_for(@vote) do |f| %>
 
       <%= f.hidden_field :score, id: 'hidden-score' %>
       <%= f.hidden_field :place_id, :value => params[:id] %>
       
-      <%= f.submit "Quiet", class: "btn btn-large btn-primary green", id: 'quiet' %>
-      <%= f.submit "Moderate", class: "btn btn-large btn-primary orange", id: 'moderate' %>
-      <%= f.submit "Busy", class: "btn btn-large btn-primary red", id: 'busy' %>
+      <%= button_tag(type: "submit", class: "borderless-btn voting", id: 'quiet') do %>
+          <%= fa_icon "user 2x" %>
+      <% end %>
+
+
+      <%= button_tag(type: "submit", class: "borderless-btn voting", id: 'moderate') do %>
+          <%= fa_icon "user 2x" %>
+      <% end %>
+
+
+      <%= button_tag(type: "submit", class: "borderless-btn voting", id: 'busy') do %>
+         <%= fa_icon "user 2x" %>
+      <% end %>
 
       <% end %>
     </div>
@@ -20,6 +30,27 @@
 
 <script type="text/javascript">
 $( document ).ready(function() {
+
+  // on hover
+  $('.voting').hover(function(e) {
+    allButtons = $('.voting');
+    thisIndex = $(this).index();
+    allButtons.each(function(i){
+        if ($(this).index() <= thisIndex) {
+          $(this).css({'background-color':'green'});
+        }
+    });
+  })
+
+  // mouseleave
+  $('.voting').mouseleave(function(e) {
+    allButtons = $('.voting');
+    allButtons.each(function(i){
+      $(this).css({'background-color':'transparent'});
+    });
+  })
+
+  // on click
 
   $('#quiet').click(function(e) {
     e.preventDefault();
