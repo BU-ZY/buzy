@@ -20,6 +20,7 @@ module ApplicationHelper
   end
 
   def busyness_name(score)
+    return "No score yet!" if score.nil?
     case score # THESE COLORS SHOULD MATCH WITH CUSTOM.CSS
       when 0..25
         "Not busy"
@@ -30,7 +31,7 @@ module ApplicationHelper
       when 76..100
         "Buzzing!"
       else
-        "score out of range"
+        "ERROR: score out of range"
     end
   end
 
