@@ -146,13 +146,17 @@ p {
 /* voting buttons */
 
 .borderless-btn, .borderless-btn:active {
-  width: 30px;
-  height: 30px;
-  @include rounded(30px);
   display: inline-block;
   background-color: transparent;
   border: none;
   outline: none;
+  padding: 0;
+  width: 24px;
+  font-size: 12px;
+}
+
+.borderless-btn.selected {
+  color: $blue;
 }
 
 /* Header */
