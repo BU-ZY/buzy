@@ -30,10 +30,10 @@ class PlacesController < ApplicationController
     @time_ago = params[:time_ago] ? params[:time_ago].to_i : 60 # get the time-ago in minutes from the url, if it exists
     unless @place.votes.blank?
       votes = votes_within(@time_ago, params[:id])
-      @color = busyness_color(@place.score)
       @graphable  = graphable_votes(votes_within(@time_ago, params[:id]))
       @username = "Public"
       @score = weighted_score(votes)
+      @color = busyness_color(@score)
     end
   end
 
