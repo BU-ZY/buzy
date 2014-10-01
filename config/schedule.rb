@@ -19,6 +19,9 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.minute do
+set :environment, "development"
+set :output, 'log/cron.log' # where should output from cron jobs be written
+
+every 5.hour do
 	runner "Place.cast_vote_from_ingalls_page"
 end

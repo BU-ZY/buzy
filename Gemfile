@@ -15,6 +15,7 @@ gem 'geocode'
 gem 'skeleton-rails'
 gem  'google_static_maps_helper'
 gem 'whenever', :require => false
+gem 'nokogiri'
 
 
 group :development, :test do
