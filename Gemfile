@@ -9,6 +9,12 @@ gem 'chartkick'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem "font-awesome-rails"
+gem 'gmaps4rails'
+gem 'simple_form'
+gem 'geocode'
+gem 'skeleton-rails'
+gem  'google_static_maps_helper'
+gem 'whenever', :require => false
 
 
 group :development, :test do
@@ -47,10 +53,3 @@ group :production do
   gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
 end
-
-gem 'gmaps4rails'
-gem 'simple_form'
-gem 'geocode'
-gem 'skeleton-rails'
-gem  'google_static_maps_helper'
-gem 'whenever'

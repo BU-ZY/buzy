@@ -3,5 +3,14 @@
 		<h1>BUZZY</h1>
 		<img id="bee-icon" src="<%= image_url('bee-icon-white.png') %>">
 		<h2>What's buzzin' around you?</h2>
+		<div class="btn" id="what-btn">What's this?</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+$(function() {
+	$('#what-btn').click(function(e) {
+		jQuery.facebox('some html');
+	});
+})
+</script>
