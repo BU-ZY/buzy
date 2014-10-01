@@ -76,4 +76,5 @@ module ApplicationHelper
     end
     return total_sum/total_length
   end
+
 end

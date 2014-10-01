@@ -53,6 +53,6 @@ gem 'simple_form'
 gem 'geocode'
 gem 'skeleton-rails'
 gem  'google_static_maps_helper'
-<<<<<<< HEAD
 gem 'whenever', :require => false
+gem 'nokogiri'
 

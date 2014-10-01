@@ -25,6 +25,22 @@ class VotesController < ApplicationController
     end
   end
 
+  def ingallsVote
+    PAGE_URL = "http://www.bu.edu/eng/current-students/ingalls/status/output.html"
+    page = Nokogiri::HTML(open(PAGE_URL))
+    data = page.css("strong")
+    people = data[0].text.to_i
+
+    if people > 100
+      @score =  100
+    else
+      @score =  people
+    end
+
+    Vote.create(score: @score,place_id: 1)
+    puts "ingalls test"
+  end
+
   private
 
     def vote_params
