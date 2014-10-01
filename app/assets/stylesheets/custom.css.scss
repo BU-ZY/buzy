@@ -1,6 +1,6 @@
 @import "bootstrap";
 @import "variables";
-@import url(https://fonts.googleapis.com/css?family=Lato:100);
+@import url(https://fonts.googleapis.com/css?family=Lato:300);
 
 /* Universal */
 body {
@@ -109,7 +109,7 @@ span#vote-count {
       position: relative;
       height: 200px;
       padding: 20px;
-      margin-right: 20px;
+      margin: 10px;
       min-width: 160px;
       display: inline-block;
       @include rounded(10px);
@@ -142,14 +142,52 @@ span#vote-count {
     line-height: 1.2em;
   }
 
+  .filled .expander-tab-container {
+    position:absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+  }
+
+  .filled .expander-tab-container .tab {
+    background-color: black;
+    color: white;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 1em;
+    padding: 0.5em;
+    height: 1.5em;
+  }
+
+  .filled .expander-tab-container .tab.inverse {
+    background-color: white;
+    color: black;
+  }
+
+   .filled .expandable {
+    position:absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    @include rounded(10px);
+    @include transparency-of(0.9);
+  }
+
   .filled .place-name {
+    position: absolute;
+    top: 2em;
     font-size: 1.5em;
     width: 100%;
     @include rounded(10px);
   }
 
   .filled > .overlay > .score-name {
-    margin-top: 1.75em;
+    position: absolute;
+    top: 6em;
+    width: 100%;
+    text-align: center;
     font-size: 1em;
   }
 
@@ -159,6 +197,22 @@ span#vote-count {
     left: 0;
     width: 100%;
     height: 30px;
+  }
+
+  .filled .vote-container { /* holds the vote buttons */
+    position: absolute;
+    top: 1.75em;
+    width: 100%;
+  }
+
+  .filled .expandable button.vote {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid white;
+    color: white;
+    clear:both;
+    background-color: transparent;
   }
 }
 
