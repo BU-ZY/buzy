@@ -36,7 +36,7 @@ module ApplicationHelper
   end
 
   def update_scores(id=nil) # updates the score of all places by default, or just the place with the passed id
-    places = id ? [Place.find(id)] : Place.all
+    places = id.nil? ? [Place.find(id)] : Place.all
 		places.each do |place| #refresh each place's scores
       if place.votes.empty?
         place.update_attribute(:score, nil)
