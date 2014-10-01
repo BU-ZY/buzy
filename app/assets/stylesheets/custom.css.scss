@@ -115,10 +115,6 @@ span#vote-count {
       @include rounded(10px);
   }
 
-  .filled * {
-    overflow: hidden;
-  }
-
   .filled > .filler {
       bottom: 0;
       left: 0;
