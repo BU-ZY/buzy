@@ -1,9 +1,4 @@
 <div id="home-screen" class="center hero-unit">
-	<%= link_to "Map", '/map', class: "btn btn-large btn-primary" %>
-
-	<br>
-	<br>
-	
 	<div class="row-fluid">
 		<div id="choices">
 			<% @places.each do |place| %>
@@ -22,12 +17,38 @@
 								<%= busyness_name(place.score) %>
 							<% end %>
 						</div>
-					</div>
-					<div class="voting-form-container">
-						<%= render 'votes/form', :place => place %>
+						<div class="expandable" place="<%= place.id %>">
+							<%= render 'votes/form2', :place => place %>
+						</div>
+						<div class="expander-tab-container">
+							<div class="tab" place="<%= place.id %>">vote</div>
+						</div>
 					</div>
 				</div>
 			<% end %>
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+$(function() {
+	// hide all dropdown content on page load
+	$('.expandable').each(function() {
+	    $(this).hide();
+	});
+});
+
+$(".tab").click(function () {
+    $tab = $(this);
+    $correspondingExpandable = $(this).parent().parent().children('.expandable'); // the expandable div in this same container
+    $correspondingExpandable.slideToggle(500, function() { // toggle the visibility
+    	if ($correspondingExpandable.is(":visible")) {
+    		$tab.text("hide");
+    		$tab.addClass('inverse');
+    	} else {
+    		$tab.text("vote");
+    		$tab.removeClass('inverse');
+    	}
+    });
+});	
+</script>
