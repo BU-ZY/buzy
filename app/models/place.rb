@@ -24,7 +24,7 @@ class Place < ActiveRecord::Base
 				Vote.create(place_id: ingalls_id, score: score)
 			end
 			puts "Ingalls scrape successful!"
-		rescue: e # catch errors
+		rescue => e # catch errors
 			puts "Ingalls score scraper error: #{e}"
 		end
 	end

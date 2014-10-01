@@ -1,5 +1,5 @@
 module ApplicationHelper
-	def busyness_color(score)
+  def busyness_color(score)
     colors = {
       red: '#C4161B',
       orange: '#FAA419',
