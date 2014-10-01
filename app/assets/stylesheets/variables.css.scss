@@ -6,6 +6,9 @@ $glass:#E7E7E7;
 $pink: #FF0060;
 $light-gray: #faf9f9;
 
+$aqua: #1d58a4;
+$dark-aqua: #2daaa8;
+
 $red-accent: #CC0000;
 $dark-red-accent: #990000;
 $green-accent: #a7df38;
@@ -25,4 +28,11 @@ $dark-blue-accent: #0971B2;
 -moz-border-radius: 0 0 $amount $amount;
 -webkit-border-bottom-left-radius: $amount;
 -webkit-border-bottom-right-radius: $amount;
+}
+
+@mixin transparency-of($value){
+  $IEValue: $value*100;
+  opacity: $value;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$IEValue+")";
+  filter: alpha(opacity=$IEValue);
 }

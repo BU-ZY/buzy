@@ -1,9 +1,10 @@
 @import "bootstrap";
 @import "variables";
+@import url(http://fonts.googleapis.com/css?family=Lato:100);
 
 /* Universal */
 body {
-  font-family:'Open Sans',arial,sans-serif;
+  font-family: 'Lato', 'Open Sans',arial,sans-serif;
   white-space:0!important;
   word-wrap:break-word;
   padding-top: 60px;
@@ -20,12 +21,12 @@ textarea {
 .center {
   text-align: center;
   h1#title {
-    color: $red;
+    color: $orange;
   }
 }
 
 #title.hero-unit {
-  background-color: $red;
+  background-color: $orange;
   color: white;
   width: 100%;
   position: absolute;
@@ -37,7 +38,7 @@ textarea {
   width: 50%;
   margin-left:auto;
   margin-right:auto;
-  color: $red;
+  color: $orange;
 }
 
 #content {
@@ -95,15 +96,21 @@ p {
 	*padding-left: 20px;
 	}
 
+span#vote-count {
+  color: $black;
+}
+
 /* voting on main page */
 
 #home-screen {
   .filled {
-      background-color: $glass;
+      background-color: $aqua;
+      color: white;
       position: relative;
-      height: 130px;
+      height: 200px;
       padding: 20px;
-      min-width: 120px;
+      margin-right: 20px;
+      min-width: 160px;
       display: inline-block;
       @include rounded(10px);
   }
@@ -119,14 +126,15 @@ p {
 
   .filled > .overlay {
       height: 100%;
-      width: 75%;
+      width: 100%;
       position: absolute;
       text-align:center;
+      left: 0;
       margin: 0 auto;   
   }
 
-  .filled > .overlay > a {
-      color: black;
+  .filled .overlay a {
+      color: white;
   }
 
   .filled > .overlay > .score {
@@ -134,13 +142,20 @@ p {
     line-height: 1.2em;
   }
 
-  .filled > .overlay > .score-name {
+  .filled .place-name {
+    font-size: 1.5em;
+    width: 100%;
+    @include rounded(10px);
+  }
 
+  .filled > .overlay > .score-name {
+    margin-top: 1.75em;
+    font-size: 1em;
   }
 
   .filled > .voting-form-container {
     position: absolute;
-    bottom: 45px;
+    bottom: 4em;
     left: 0;
     width: 100%;
     height: 30px;
@@ -157,10 +172,11 @@ p {
   padding: 0;
   width: 24px;
   font-size: 12px;
+  color: white;
 }
 
 .borderless-btn.selected {
-  color: $blue;
+  color: black;
 }
 
 /* Header */
@@ -174,7 +190,7 @@ p {
 }
 
 .jumbotron.red-banner {
-  background-color: $red;
+  background-color: $orange;
   color: white;
   min-height: 3em;
   padding: 30px;
@@ -195,7 +211,7 @@ p {
 
 .navbar {
   .navbar-inner {
-    background-color: $red;
+    background-color: $orange;
     background-image: none;
     border: none;
   }
@@ -221,7 +237,7 @@ p {
 }
 
 .btn-primary {
-  background-color: $blue;
+  background-color: $aqua;
 }
 
 .btn-primary:hover {
@@ -237,7 +253,7 @@ p {
 }
 
 .btn.red {
-  background-color: $red;
+  background-color: $orange;
 }
 
 .navbar-inverse .nav > li > a {

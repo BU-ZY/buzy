@@ -17,13 +17,11 @@ class PlacesController < ApplicationController
     # update_scores(params[:id]) # update the score of just this place
     @place = Place.find(params[:id])
     @time_ago = params[:time_ago] ? params[:time_ago].to_i : 60 # get the time-ago in minutes from the url, if it exists
-    unless @place.votes.blank?
-      votes = votes_within(@time_ago, params[:id])
-      @graphable  = graphable_votes(votes_within(@time_ago, params[:id]))
-      @username = "Public"
-      @score = weighted_score(votes) # don't just use place.score!
-      @color = busyness_color(@score)
-    end
+    votes = votes_within(@time_ago, params[:id])
+    @graphable  = graphable_votes(votes_within(@time_ago, params[:id]))
+    @username = "Public"
+    @score = weighted_score(votes) # don't just use place.score!
+    @color = busyness_color(@score)
   end
 
   def create
