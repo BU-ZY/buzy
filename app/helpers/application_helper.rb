@@ -1,5 +1,5 @@
 module ApplicationHelper
-	def busyness_color(score)
+  def busyness_color(score)
     colors = {
       red: '#C4161B',
       orange: '#FAA419',
@@ -37,7 +37,7 @@ module ApplicationHelper
 
   def update_scores(id=nil) # updates the score of all places by default, or just the place with the passed id
     places = id ? [Place.find(id)] : Place.all
-		places.each do |place| #refresh each place's scores
+    places.each do |place| #refresh each place's scores
       if place.votes.empty?
         place.update_attribute(:score, nil)
       else
