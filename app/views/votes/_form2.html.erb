@@ -1,0 +1,38 @@
+<div class="vote-container vote-for-<%= place.id %>">
+  <% @vote = Vote.new %>
+  <%= simple_form_for(@vote) do |f| %>
+
+	  <%= f.hidden_field :score, id:'hidden-score' %>
+	  <%= f.hidden_field :place_id, id:'hidden-place' %>
+
+	  <div class="button-container">
+
+	    <%= button_tag(type: "submit", class: "vote quiet", data: {place:place.id, score:"100"}) do %>
+	        Busy
+	    <% end %>
+
+	    <%= button_tag(type: "submit", class: "vote moderate", data: {place:place.id, score:"50"}) do %>
+	        Moderate
+	    <% end %>
+
+	    <%= button_tag(type: "submit", class: "vote busy", data: {place:place.id, score:"1"}) do %>
+	       Quiet
+	    <% end %>
+    </div>
+  <% end %>
+</div>
+
+
+<script type="text/javascript">
+  $( document ).ready(function() {
+    // on click
+    $('.vote').click(function(e) {
+      e.preventDefault();
+      $('#hidden-place').val($(this).attr("data-place")); // assign the value for the hidden place_id
+      $('#hidden-score').val($(this).attr("data-score"));
+      $(this).parent().slideUp(500, function(){
+      	$('#new_vote').submit();
+      });
+    })
+  })
+</script>

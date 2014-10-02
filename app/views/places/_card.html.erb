@@ -1,38 +1,39 @@
 <span class="card" place="<%= place.id %>">
-	<div class="filled" >
-		<div class="filler" style="height:<%= (place.score.to_f/100)*240 %>px; min-height: 10px;"></div>
-		<div class="overlay">
-			<div class="place-name">
-				<a href="\places/<%= place.id %>">
-					<%= place.name%>
-				</a>
-			</div>
-			<div class="score-name">
-				<% if place.score.nil? %>
-					No recent votes!
-				<% else %>
-					<%= busyness_name(place.score) %>
-				<% end %>
-			</div>
-			<div class="expandable" place="<%= place.id %>">
-				<%= render 'votes/form2', :place => place %>
-			</div>
-			<div class="expander-tab-container">
-				<div class="tab" place="<%= place.id %>">vote</div>
-			</div>
+	<div class="filler"></div>
+	<div class="overlay">
+		<div class="place-name">
+			<a href="\places/<%= place.id %>">
+				<%= place.name%>
+			</a>
+		</div>
+		<div class="score-name">
+			<% if place.score.nil? %>
+				No recent votes!
+			<% else %>
+				<%= busyness_name(place.score) %>
+			<% end %>
+		</div>
+		<div class="expandable" place="<%= place.id %>">
+			<%= render 'votes/form2', :place => place %>
+		</div>
+		<div class="expander-tab-container">
+			<div class="tab" place="<%= place.id %>">vote</div>
 		</div>
 	</div>
 </span>
 
 <script type="text/javascript">
 $(function() {
-	// hide all dropdown content on page load
-	$('.expandable').each(function() {
+	$thisCard = $(".card[place='<%= place.id %>']"); // distinguish this card from others that might be on same page
+
+	$thisCard.find('.expandable').each(function() { // hide all dropdown content on page load
 	    $(this).hide();
 	});
 
-	// show/hide the expandable div when the tab is clicked
-	$(".tab[place='<%= place.id %>']").click(function () { // make sure to select only the tab on this card
+	$maxHeight = ($thisCard.outerHeight()-parseInt($thisCard.css('padding-top'))); // the maximum height for the color fill
+	$thisCard.find('.filler').height($maxHeight * <%= (place.score.to_f/100) %>); // set the height of the filler
+
+	$thisCard.find(".tab").click(function () { // make sure to select only the tab on this card
 		console.log('click event!');
 	    $tab = $(this);
 	    $correspondingExpandable = $(this).parent().parent().children('.expandable'); // the expandable div in this same container

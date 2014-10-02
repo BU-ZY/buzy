@@ -1,4 +1,4 @@
-BUZZY
+Bzzy
 ===== 
 
 http://buzy.herokuapp.com

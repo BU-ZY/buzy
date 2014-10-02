@@ -4,7 +4,9 @@ $green: #74BF45;
 $blue: #007CC4;
 $glass:#E7E7E7;
 $pink: #FF0060;
-$light-gray: #faf9f9;
+$light-gray: #eaeae9;
+$dark-gray: #777777;
+$royal-purple: #3626AD;
 
 $aqua: #1d58a4;
 $dark-aqua: #2daaa8;
@@ -23,6 +25,7 @@ $dark-blue-accent: #0971B2;
           border-radius: $amount;
 
 }
+$default-rounding: 10px;
 
 @mixin rounded-not-top($amount) {
 -moz-border-radius: 0 0 $amount $amount;
