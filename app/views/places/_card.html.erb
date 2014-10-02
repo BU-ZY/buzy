@@ -1,4 +1,4 @@
-<span class="card">
+<span class="card" place="<%= place.id %>">
 	<div class="filled" >
 		<div class="filler" style="height:<%= (place.score.to_f/100)*240 %>px; min-height: 10px;"></div>
 		<div class="overlay">
@@ -30,19 +30,20 @@ $(function() {
 	$('.expandable').each(function() {
 	    $(this).hide();
 	});
-});
 
-$(".tab").click(function () {
-    $tab = $(this);
-    $correspondingExpandable = $(this).parent().parent().children('.expandable'); // the expandable div in this same container
-    $correspondingExpandable.slideToggle(500, function() { // toggle the visibility
-    	if ($correspondingExpandable.is(":visible")) {
-    		$tab.text("hide");
-    		$tab.addClass('inverse');
-    	} else {
-    		$tab.text("vote");
-    		$tab.removeClass('inverse');
-    	}
-    });
-});	
+	$(".tab[place='<%= place.id %>']").click(function () { // make sure to select only the tab on this card
+		console.log('click event!');
+	    $tab = $(this);
+	    $correspondingExpandable = $(this).parent().parent().children('.expandable'); // the expandable div in this same container
+	    $correspondingExpandable.slideToggle(500, function() { // toggle the visibility
+	    	if ($correspondingExpandable.is(":visible")) {
+	    		$tab.text("hide");
+	    		$tab.addClass('inverse');
+	    	} else {
+	    		$tab.text("vote");
+	    		$tab.removeClass('inverse');
+	    	}
+	    });
+	});	
+});
 </script>
