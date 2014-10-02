@@ -4,17 +4,21 @@
 
 	  <%= f.hidden_field :score, id:'hidden-score' %>
 	  <%= f.hidden_field :place_id, id:'hidden-place' %>
-    <%= button_tag(type: "submit", class: "vote quiet", data: {place:place.id, score:"100"}) do %>
-        Busy
-    <% end %>
 
-    <%= button_tag(type: "submit", class: "vote moderate", data: {place:place.id, score:"50"}) do %>
-        Moderate
-    <% end %>
+	  <div class="button-container">
 
-    <%= button_tag(type: "submit", class: "vote busy", data: {place:place.id, score:"1"}) do %>
-       Quiet
-    <% end %>
+	    <%= button_tag(type: "submit", class: "vote quiet", data: {place:place.id, score:"100"}) do %>
+	        Busy
+	    <% end %>
+
+	    <%= button_tag(type: "submit", class: "vote moderate", data: {place:place.id, score:"50"}) do %>
+	        Moderate
+	    <% end %>
+
+	    <%= button_tag(type: "submit", class: "vote busy", data: {place:place.id, score:"1"}) do %>
+	       Quiet
+	    <% end %>
+    </div>
   <% end %>
 </div>
 
@@ -26,7 +30,9 @@ $( document ).ready(function() {
     e.preventDefault();
     $('#hidden-place').val($(this).attr("data-place")); // assign the value for the hidden place_id
     $('#hidden-score').val($(this).attr("data-score"));
-    $('#new_vote').submit();
+    $(this).parent().slideUp(500, function(){
+    	$('#new_vote').submit();
+    });
   })
 })
 </script>

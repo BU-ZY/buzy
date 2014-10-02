@@ -8,12 +8,8 @@
 		<h1 style= "color:<%= @color %>; font-weight: bold;"><%= @place.score %></h1>
 	<% else %>
 		<h2>Buzzy score for the past <%= @time_ago %> minutes</h2>
-		<h1 style= "color:<%= @color %>; font-weight: bold;"><%= @score %></h1>
+		<%= render 'places/card', :place => @place %>
 	<% end %>
-
-	<div class="jumbotron">
-		<%= render 'votes/form', :place => @place %>
-	</div>
 
 	<div id="choices">
 		<a href="/places/<%= @place.id %>/60">

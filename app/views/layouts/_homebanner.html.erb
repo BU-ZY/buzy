@@ -3,14 +3,24 @@
 		<h1>BUZZY</h1>
 		<img id="bee-icon" src="<%= image_url('bee-icon-white.png') %>">
 		<h2>What's buzzin' around you?</h2>
-		<div class="btn" id="what-btn">What's this?</div>
+		
+		<!-- popup button -->
+		<a href="#test-popup" class="open-popup-link">	
+			<div class="btn" id="what-btn">What's this?</div>
+		</a>
+		<div id="test-popup" class="white-popup mfp-hide"> <!-- actual popup -->
+			<p>Buzzy uses votes from people like you to help you figure out if places on campus are empty, packed, or somewhere in between.</p>
+			Contribute by voting and sharing your opinion!
+		</div>
 	</div>
 </div>
 
 <script type="text/javascript">
-$(function() {
-	$('#what-btn').click(function(e) {
-		jQuery.facebox('some html');
+$(document).ready(function() {
+	// Example 1: From an element in DOM
+	$('.open-popup-link').magnificPopup({
+  		type:'inline',
+  		midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
 	});
-})
+});
 </script>

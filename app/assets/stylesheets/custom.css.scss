@@ -1,5 +1,6 @@
 @import "bootstrap";
 @import "variables";
+@import "magnific-popup";
 @import url(https://fonts.googleapis.com/css?family=Lato:300);
 
 /* Universal */
@@ -80,21 +81,6 @@ form {
   margin: 0 0 20px; 
   border-solid: 20px;
   }
-  
-p {
-  color: white;
-  background-color: rgba(40, 44, 42, 0.8)}
-  
-  a, h1 a:hover {
-    text-decoration: none; 
-  }
-
-  
-  .btn.btn-large {
-    *padding-top: 7px;
-    *padding-bottom: 7px;
-	*padding-left: 20px;
-	}
 
 span#vote-count {
   color: $black;
@@ -102,9 +88,9 @@ span#vote-count {
 
 /* voting on main page */
 
-#home-screen {
+.card {
   .filled {
-      background-color: $aqua;
+      background-color: $royal-purple;
       color: white;
       position: relative;
       height: 200px;
@@ -205,15 +191,18 @@ span#vote-count {
     width: 100%;
   }
 
-  .filled .expandable button.vote {
-    display: block;
-    margin: 10px auto;
-    padding: 10px;
-    border: 1px solid white;
-    color: white;
-    clear:both;
-    background-color: transparent;
-  }
+  .filled .expandable {
+    button.vote, button.vote:active {
+      display: block;
+      margin: 10px auto;
+      padding: 10px;
+      border: 1px solid white;
+      color: white;
+      clear:both;
+      background-color: transparent;
+      outline: none;
+    }
+  } 
 }
 
 /* voting buttons */

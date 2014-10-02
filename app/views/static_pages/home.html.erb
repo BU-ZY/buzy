@@ -2,53 +2,8 @@
 	<div class="row-fluid">
 		<div id="choices">
 			<% @places.each do |place| %>
-				<div class="filled" >
-					<div class="filler" style="height:<%= (place.score.to_f/100)*240 %>px; min-height: 10px;"></div>
-					<div class="overlay">
-						<div class="place-name">
-							<a href="\places/<%= place.id %>">
-								<%= place.name%>
-							</a>
-						</div>
-						<div class="score-name">
-							<% if place.score.nil? %>
-								No recent votes!
-							<% else %>
-								<%= busyness_name(place.score) %>
-							<% end %>
-						</div>
-						<div class="expandable" place="<%= place.id %>">
-							<%= render 'votes/form2', :place => place %>
-						</div>
-						<div class="expander-tab-container">
-							<div class="tab" place="<%= place.id %>">vote</div>
-						</div>
-					</div>
-				</div>
+				<%= render 'places/card', :place => place %>
 			<% end %>
 		</div>
 	</div>
 </div>
-
-<script type="text/javascript">
-$(function() {
-	// hide all dropdown content on page load
-	$('.expandable').each(function() {
-	    $(this).hide();
-	});
-});
-
-$(".tab").click(function () {
-    $tab = $(this);
-    $correspondingExpandable = $(this).parent().parent().children('.expandable'); // the expandable div in this same container
-    $correspondingExpandable.slideToggle(500, function() { // toggle the visibility
-    	if ($correspondingExpandable.is(":visible")) {
-    		$tab.text("hide");
-    		$tab.addClass('inverse');
-    	} else {
-    		$tab.text("vote");
-    		$tab.removeClass('inverse');
-    	}
-    });
-});	
-</script>
