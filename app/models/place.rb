@@ -13,6 +13,11 @@ class Place < ActiveRecord::Base
 		weighted_score(votes)
 	end
 
+	def self.search(query)
+    # where(:title, query) -> This would return an exact match of the query
+    where("name like ?", "%#{query}%") 
+  end
+
 	def self.cast_vote_from_ingalls_page # method to be run by cron
 		begin
 			page = Nokogiri::HTML(open("http://www.bu.edu/eng/current-students/ingalls/status/output.html").read)
