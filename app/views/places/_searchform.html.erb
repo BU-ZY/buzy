@@ -1,16 +1,10 @@
-<div id="search-form">
+<div class="row-fluid" id="search-form">
   <%= form_tag(home_path, :method => "get", class: "navbar-form", id: "search-form") do %>
     <div class="input">
-      <%= text_field_tag :search, params[:search], class: "span2", placeholder: "How busy is...", value: '' %>
+      <%= text_field_tag :search, params[:search], class: "span5", placeholder: "How busy is...", value: '' %>
       <!-- In order to have the "search" icon int the button, we need to use plain HTML instead 
            of using a Rails form helper -->
       <button class="btn" type="submit"><i class="icon-search"></i></button>
     </div>
   <% end %>
 </div>
-
-<script>
-$(function() {
-	// $('.input').text('');
-});
-</script>

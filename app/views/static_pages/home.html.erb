@@ -8,7 +8,7 @@
 			<p>Search results for '<%= @search_term %>'</p>
 		<% end %>
 
-		<div id="choices">
+		<div class="row-fluid" id="places">
 			<% @places.each do |place| %>
 				<%= render 'places/card', :place => place %>
 			<% end %>
