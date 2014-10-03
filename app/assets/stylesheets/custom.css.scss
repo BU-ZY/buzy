@@ -212,6 +212,13 @@ span#vote-count {
   background-color: $light-gray;
 }
 
+#search-form {
+  #search-bar {
+    width: 500px;
+    max-width: 75%;
+  }
+}
+
 /* voting buttons */
 
 .borderless-btn, .borderless-btn:active {
