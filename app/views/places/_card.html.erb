@@ -8,7 +8,7 @@
 		</div>
 		<div class="score-name">
 			<% if place.score.nil? %>
-				No recent votes!
+				<span class="none">No recent votes!</span>
 			<% else %>
 				<%= busyness_name(place.score) %>
 			<% end %>
