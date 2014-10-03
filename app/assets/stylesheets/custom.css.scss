@@ -25,6 +25,10 @@ textarea {
   }
 }
 
+.hero-unit {
+  padding: 20px;
+}
+
 #title.hero-unit {
   background-color: $orange;
   color: white;
@@ -378,6 +382,21 @@ footer {
       float: left;
       margin-left: 10px;
     }
+  }
+}
+
+/* fix bootstrap width on mobile */
+
+@media (max-width: 767px) {
+  body {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .navbar-fixed-top,
+  .navbar-fixed-bottom,
+  .navbar-static-top {
+    margin-right: 0;
+    margin-left: 0;
   }
 }
 

@@ -6,6 +6,9 @@
 		<!-- if the shown cards are the result of a search, display the search term -->
 		<% if @search_term %> 
 			<p>Search results for '<%= @search_term %>'</p>
+			<% if @places.empty? %>
+				<p>Couldn't find any!</p>
+			<% end %>
 		<% end %>
 
 		<div class="row-fluid" id="places">
