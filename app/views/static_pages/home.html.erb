@@ -1,5 +1,13 @@
 <div id="home-screen" class="center hero-unit">
 	<div class="row-fluid">
+
+		<%= render 'places/searchform' %>
+
+		<!-- if the shown cards are the result of a search, display the search term -->
+		<% if @search_term %> 
+			<p>Search results for '<%= @search_term %>'</p>
+		<% end %>
+
 		<div id="choices">
 			<% @places.each do |place| %>
 				<%= render 'places/card', :place => place %>

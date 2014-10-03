@@ -3,7 +3,12 @@ class StaticPagesController < ApplicationController
   
   def home
   	update_scores
-    @places = Place.all
+    if params[:search]
+      @places = Place.search(params[:search])
+      @search_term = params[:search]
+    else
+      @places = Place.all
+    end
   end
 
   def map
