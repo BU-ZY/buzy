@@ -15,7 +15,8 @@ class Place < ActiveRecord::Base
 
 	def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
-    where("name like ?", "%#{query}%") 
+    # where("name like ?", "%#{query}%") -> case sensitive on PostgreSQL!
+    where("LOWER(name) LIKE ?", "%#{query.downcase}%")
   end
 
 	def self.cast_vote_from_ingalls_page # method to be run by cron
