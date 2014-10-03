@@ -1,7 +1,7 @@
 <div id="home-screen" class="center hero-unit">
 	<div class="row-fluid">
 
-		<%= render 'places/searchform' %>
+		<%= render 'places/searchform', :search_term => @search_term %>
 
 		<!-- if the shown cards are the result of a search, display the search term -->
 		<% if @search_term %> 
@@ -12,9 +12,7 @@
 		<% end %>
 
 		<div class="row-fluid" id="places">
-			<% @places.each do |place| %>
-				<%= render 'places/card', :place => place %>
-			<% end %>
+			<%= render 'places/multiplecards', :places => @places %>
 			
 <!-- 			<span class="card" id="example">
 				<div class="overlay">
