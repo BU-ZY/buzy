@@ -4,8 +4,8 @@
       <%= text_field_tag :search, params[:search], id: "search-bar", class: "span5", placeholder: "How busy is..." %>
       <!-- In order to have the "search" icon int the button, we need to use plain HTML instead 
            of using a Rails form helper -->
-      <button class="btn" id="clear" type="button"><i class="icon-remove"></i></button>
-      <button class="btn" type="submit"><i class="icon-search"></i></button> <!-- this button will be fired on an enter button press because it has type=submit -->
+      <button class="btn borderless-btn" id="clear" type="button"><i class="icon-remove"></i></button>
+      <button class="btn borderless-btn" type="submit"><i class="icon-search"></i></button> <!-- this button will be fired on an enter button press because it has type=submit -->
     </div>
   <% end %>
 </div>
