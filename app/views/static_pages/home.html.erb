@@ -1,17 +1,18 @@
 <div id="home-screen" class="center hero-unit">
 	<div class="row-fluid">
 
-		<%= render 'places/searchform' %>
+		<%= render 'places/searchform', :search_term => @search_term %>
 
 		<!-- if the shown cards are the result of a search, display the search term -->
 		<% if @search_term %> 
 			<p>Search results for '<%= @search_term %>'</p>
+			<% if @places.empty? %>
+				<p>Couldn't find any!</p>
+			<% end %>
 		<% end %>
 
-		<div id="choices">
-			<% @places.each do |place| %>
-				<%= render 'places/card', :place => place %>
-			<% end %>
+		<div class="row-fluid" id="places">
+			<%= render 'places/multiplecards', :places => @places %>
 			
 <!-- 			<span class="card" id="example">
 				<div class="overlay">

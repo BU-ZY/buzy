@@ -26,6 +26,10 @@ textarea {
   }
 }
 
+.hero-unit {
+  padding: 20px;
+}
+
 #title.hero-unit {
   background-color: $orange;
   color: white;
@@ -213,6 +217,13 @@ span#vote-count {
   background-color: $light-gray;
 }
 
+#search-form {
+  #search-bar {
+    width: 500px;
+    max-width: 75%;
+  }
+}
+
 /* voting buttons */
 
 .borderless-btn, .borderless-btn:active {
@@ -384,6 +395,22 @@ footer {
       float: left;
       margin-left: 10px;
     }
+  }
+}
+
+/* fix bootstrap width on mobile */
+
+@media (max-width: 767px) {
+  body {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .navbar-fixed-top,
+  .navbar-fixed-bottom,
+  .navbar-static-top,
+  .jumbotron {
+    margin-right: 0;
+    margin-left: 0;
   }
 }
 
