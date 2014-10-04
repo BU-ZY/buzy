@@ -170,7 +170,7 @@ span#vote-count {
 
   .overlay > .score-name {
     position: absolute;
-    top: 6em;
+    bottom: 2.5em;
     width: 100%;
     text-align: center;
     font-size: 1em;
@@ -290,7 +290,7 @@ a#title-link, a#title-link:hover {
 /* popups */
 .white-popup {
   background-color: $light-gray;
-  border: 3px solid black;
+  border: 3px solid $orange;
   @include rounded($default-rounding);
   @include transparency-of(0.9);
 }
