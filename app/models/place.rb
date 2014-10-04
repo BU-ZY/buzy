@@ -2,7 +2,7 @@ require 'open-uri'
 
 class Place < ActiveRecord::Base
 	has_many :votes
-	validates :name, presence: true, length: { maximum: 50 }
+	validates :name, presence: true, length: { maximum: 50 }, uniqueness: true
 	validates :location, presence: true
 	default_scope order('lower(name)')
 
