@@ -1,16 +1,41 @@
-<div id="search-form">
+<div class="row-fluid" id="search-form">
   <%= form_tag(home_path, :method => "get", class: "navbar-form", id: "search-form") do %>
     <div class="input">
-      <%= text_field_tag :search, params[:search], class: "span2", placeholder: "How busy is...", value: '' %>
+      <%= text_field_tag :search, params[:search], id: "search-bar", placeholder: "How busy is..." %>
       <!-- In order to have the "search" icon int the button, we need to use plain HTML instead 
            of using a Rails form helper -->
-      <button class="btn" type="submit"><i class="icon-search"></i></button>
+      <button class="btn borderless-btn" id="clear" type="button"><i class="icon-remove"></i></button>
+      <button class="btn borderless-btn" type="submit"><i class="icon-search"></i></button> <!-- this button will be fired on an enter button press because it has type=submit -->
     </div>
   <% end %>
 </div>
 
 <script>
 $(function() {
-	// $('.input').text('');
+	$clearBtn = $('#search-form .btn#clear');
+	$inputField = $('#search-form #search-bar');
+
+	function checkClearBtn() {
+		if ($inputField.val().length > 0) { // if there is input
+			$clearBtn.show();
+		} else { // it's empty
+			$clearBtn.hide();
+		}
+	}
+
+	// show the clear button if there is input, hide it if not
+	checkClearBtn();
+
+	// listen for when input changes
+	$inputField.bind("change paste keyup", function() {
+		checkClearBtn();
+	});
+
+	// if the clear button is clicked
+	$clearBtn.click(function(event) {
+		event.preventDefault(); // don't submit the form
+		$inputField.val("");
+		$(this).hide(); // text box is empty now, so hide the clear button
+	});	
 });
 </script>
