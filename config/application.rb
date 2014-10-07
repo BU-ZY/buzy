@@ -28,5 +28,7 @@ module Buzy
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.assets.enabled = true  
     config.assets.paths << "#{Rails.root}/app/assets/fonts"  
+    config.time_zone = 'Central Time (US & Canada)'
+    config.active_record.default_timezone = :local
   end
 end

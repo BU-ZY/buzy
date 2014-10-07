@@ -39,7 +39,7 @@ group :test do
   gem 'libnotify', '0.8.0'
 end
 
-# gem 'sass-rails', '4.0.1'
+# gem 'sass-rails', '4.0.1' -> causing heroku errors
 gem "sass", "~> 3.2.5"
 gem 'sass-rails'
 gem 'uglifier', '2.1.1'

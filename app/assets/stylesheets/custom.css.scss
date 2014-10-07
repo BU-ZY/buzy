@@ -9,7 +9,6 @@ body {
   white-space:0!important;
   word-wrap:break-word;
   padding-top: 60px;
-  background-image: image-url("honeycomb-twentyfive.png");
 }
 
 section {
@@ -46,12 +45,6 @@ textarea {
   color: $orange;
 }
 
-#content {
-    width:100%;
-    max-width:800px;
-    margin:0 auto;
-    text-align:center;
-}
 .box {
 
     display: inline-block;
@@ -59,6 +52,10 @@ textarea {
     width: 170px;
     margin:10px;
     background-color:blue;
+}
+
+.container-fluid {
+  padding: 0;
 }
 
 
@@ -88,6 +85,38 @@ form {
 
 span#vote-count {
   color: $black;
+}
+
+#home-screen {
+  position: relative;
+  margin: 0;
+
+  #map-bg {
+    height: 100%; 
+    width: 100%; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    z-index: -1;
+  }
+
+  #white-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    background-color: gray;
+    opacity: .50;
+  }
+
+  #content {
+    position: relative; 
+    z-index: 1; /* The z-index should be higher than Google Maps */
+    width: 90%;
+    margin: 0 auto;
+  }
 }
 
 /* voting on main page */
@@ -375,7 +404,6 @@ a#title-link, a#title-link:hover {
 /* footer */
 
 footer {
-  margin-top: 45px;
   padding: 5px;
   border-top: 1px solid #eaeaea;
   color: $grayLight;
@@ -404,6 +432,10 @@ footer {
   body {
     padding-right: 0;
     padding-left: 0;
+  }
+
+  #map-bg {
+    display: none;
   }
   .navbar-fixed-top,
   .navbar-fixed-bottom,

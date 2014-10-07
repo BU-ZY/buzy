@@ -3,6 +3,9 @@ class StaticPagesController < ApplicationController
   
   def home
   	update_scores
+    file = File.open(File.join(Rails.root, 'app', 'assets', 'json', 'locations.json')).read
+    json = JSON.parse(file)
+    @center_coords = json.find{|p| p['name'] == 'CENTER'}['location'].gsub(" ","").split(",")
     if params[:search]
       @places = Place.search(params[:search])
       @search_term = params[:search]
