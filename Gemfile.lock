@@ -268,7 +268,7 @@ DEPENDENCIES
   jquery-rails (= 3.0.4)
   libnotify (= 0.8.0)
   nokogiri
-  pg (= 0.15.1)
+  pg
   pry
   rails (= 4.0.2)
   rails_12factor (= 0.0.2)
