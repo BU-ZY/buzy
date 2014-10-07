@@ -15,8 +15,13 @@ class Place < ActiveRecord::Base
 
 	def prediction(opts={})
 		votes = votes_closest_to_now(opts)
-		votes.inject(0){|sum, vote| sum + vote.score}.to_f/votes.size # the average 
+		if votes.empty?
+			nil
+		else
+			(votes.inject(0){|sum, vote| sum + vote.score}.to_f/votes.size).round # the average 
+		end
 	end
+
 
 	def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
@@ -24,10 +29,11 @@ class Place < ActiveRecord::Base
     where("LOWER(name) LIKE ?", "%#{query.downcase}%")
 	end
 
-	def votes_closest_to_now(opts={}) # returns past votes closest to the current time
+	def votes_closest_to_now(opts={}) # returns past votes closest to the current hour
 		num_records = opts[:num] ? opts[:num] : 25 # number of records to return
-		time = opts[:time] ? opts[:time] : Time.now.to_formatted_s :rfc822 
-		self.votes.order("ABS(created_at - #{time})").take(num_records)
+		hour_of_day = opts[:hour] ? opts[:hour] : DateTime.now.hour
+		margin = opts[:margin] ? opts[:margin] : 2 # the allowed difference in hours between 'hour' and the time the vote was cast
+		votes.where("abs(strftime('%H', created_at) - #{hour_of_day}) <= #{margin}").order(created_at: :asc).take(num_records)
 	end
 
 	def self.cast_vote_from_ingalls_page # method to be run by cron

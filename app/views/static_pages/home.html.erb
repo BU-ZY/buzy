@@ -1,29 +1,57 @@
 <div id="home-screen" class="center hero-unit">
 	<div class="row-fluid">
+		<div id="map-bg"></div>
+		<div id="white-bg"></div>
+		<div id="content">
+			<%= render 'places/searchform', :search_term => @search_term %>
 
-		<%= render 'places/searchform', :search_term => @search_term %>
-
-		<!-- if the shown cards are the result of a search, display the search term -->
-		<% if @search_term %> 
-			<p>Search results for '<%= @search_term %>'</p>
-			<% if @places.empty? %>
-				<p>Couldn't find any!</p>
+			<!-- if the shown cards are the result of a search, display the search term -->
+			<% if @search_term %> 
+				<p>Search results for '<%= @search_term %>'</p>
+				<% if @places.empty? %>
+					<p>Couldn't find any!</p>
+				<% end %>
 			<% end %>
-		<% end %>
 
-		<div class="row-fluid" id="places">
-			<%= render 'places/multiplecards', :places => @places %>
-			
-<!-- 			<span class="card" id="example">
-				<div class="overlay">
-					<div class="place-name">
-						<a href="mailto:contactbzzy@gmail.com">
-							Want to see another place here?
-						</a>
+			<div class="row-fluid" id="places">
+				<%= render 'places/multiplecards', :places => @places %>
+				
+	<!-- 			<span class="card" id="example">
+					<div class="overlay">
+						<div class="place-name">
+							<a href="mailto:contactbzzy@gmail.com">
+								Want to see another place here?
+							</a>
+						</div>
 					</div>
-				</div>
-			</span> -->
-
+				</span> -->
+			</div>
 		</div>
 	</div>
 </div>
+
+<!-- Include the Google Maps API library - required for embedding maps -->
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+ 
+<script type="text/javascript">
+ 
+// The latitude and longitude of your business / place
+var position = [27.1959739, 78.02423269999997];
+ 
+function showGoogleMaps() {
+ 
+    var latLng = new google.maps.LatLng(position[0], position[1]);
+ 
+    var mapOptions = {
+        zoom: 16, // initialize zoom level - the max value is 21
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        disableDefaultUI: true,
+        center: new google.maps.LatLng(<%= @center_coords[0] %>, <%= @center_coords[1] %>)
+    };
+ 
+    map = new google.maps.Map(document.getElementById('map-bg'),
+        mapOptions);
+}
+ 
+google.maps.event.addDomListener(window, 'load', showGoogleMaps);
+</script>
