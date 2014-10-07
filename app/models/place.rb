@@ -13,11 +13,22 @@ class Place < ActiveRecord::Base
 		weighted_score(votes)
 	end
 
+	def prediction(opts={})
+		votes = votes_closest_to_now(opts)
+		votes.inject(0){|sum, vote| sum + vote.score}.to_f/votes.size # the average 
+	end
+
 	def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
     # where("name like ?", "%#{query}%") -> case sensitive on PostgreSQL!
     where("LOWER(name) LIKE ?", "%#{query.downcase}%")
-  end
+	end
+
+	def votes_closest_to_now(opts={}) # returns past votes closest to the current time
+		num_records = opts[:num] ? opts[:num] : 25 # number of records to return
+		time = opts[:time] ? opts[:time] : Time.now.to_formatted_s :rfc822 
+		self.votes.order("ABS(created_at - #{time})").take(num_records)
+	end
 
 	def self.cast_vote_from_ingalls_page # method to be run by cron
 		begin
