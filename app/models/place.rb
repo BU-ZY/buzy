@@ -18,7 +18,8 @@ class Place < ActiveRecord::Base
 		if votes.empty?
 			nil
 		else
-			(votes.inject(0){|sum, vote| sum + vote.score}.to_f/votes.size).round # the average 
+			predicted_score = (votes.inject(0){|sum, vote| sum + vote.score}.to_f/votes.size).round # the average 
+			busyness_name(predicted_score)
 		end
 	end
 
