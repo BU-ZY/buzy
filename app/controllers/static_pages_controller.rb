@@ -25,4 +25,8 @@ class StaticPagesController < ApplicationController
   	@names = selection.map{|p| p.name}
   	render 'map'
   end
+
+  def contact
+  end
+
 end
