@@ -107,7 +107,7 @@ span#vote-count {
     top: 0;
     left: 0;
     z-index: 0;
-    background-color: gray;
+    background-color: white;
     opacity: .50;
   }
 
@@ -440,6 +440,9 @@ footer {
 
   #map-bg {
     display: none;
+  }
+  #white-bg {
+    background-color: #dfdfdf !important;
   }
   .navbar-fixed-top,
   .navbar-fixed-bottom,
