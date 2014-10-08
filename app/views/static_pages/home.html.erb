@@ -16,15 +16,18 @@
 			<div class="row-fluid" id="places">
 				<%= render 'places/multiplecards', :places => @places %>
 				
-	<!-- 			<span class="card" id="example">
+				<span class="card" id="example">
 					<div class="overlay">
 						<div class="place-name">
-							<a href="mailto:contactbzzy@gmail.com">
-								Want to see another place here?
+							<a href="#suggestion-popup" class="open-popup-link">	
+								<div class="btn" id="what-btn">Suggest a new place!</div>
 							</a>
+							<div id="suggestion-popup" class="white-popup mfp-hide"> <!-- actual popup -->
+								<%= render 'places/suggestionform' %>
+							</div>
 						</div>
 					</div>
-				</span> -->
+				</span>
 			</div>
 		</div>
 	</div>

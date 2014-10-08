@@ -10,8 +10,7 @@
 			<% if place.score.nil? %>
 				<span class="none">No recent votes!</span>
 			<% else %>
-<!-- 				<%= busyness_name(place.prediction) %> -->
-				<%= (place.prediction) %>
+ 				<%= busyness_name(place.prediction) %>
 			<% end %>
 		</div>
 		<div class="expandable" place="<%= place.id %>">

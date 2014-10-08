@@ -18,11 +18,9 @@ class Place < ActiveRecord::Base
 		if votes.empty?
 			nil
 		else
-			predicted_score = (votes.inject(0){|sum, vote| sum + vote.score}.to_f/votes.size).round # the average 
-			busyness_name(predicted_score)
+			(votes.inject(0){|sum, vote| sum + vote.score}.to_f/votes.size).round # the average 
 		end
 	end
-
 
 	def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
