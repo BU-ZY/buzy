@@ -11,6 +11,7 @@ Buzy::Application.routes.draw do
 
   match '/home', to: 'static_pages#home', via: 'get'
   match '/map', to: 'static_pages#map', via: 'get'
+  match '/contact', to: 'static_pages#contact', via: 'get'
 
   match '/vote', to: 'votes#new', via: 'get'
   match '/add', to: 'places#new', via: 'get'
