@@ -16,7 +16,6 @@ gem 'skeleton-rails'
 gem  'google_static_maps_helper'
 gem 'whenever', :require => false
 gem 'nokogiri'
-gem 'pg'
 
 
 group :development, :test do
@@ -54,6 +53,6 @@ group :doc do
 end
 
 group :production do
-  # gem 'pg', '0.15.1'
+  gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
 end
