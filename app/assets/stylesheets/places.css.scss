@@ -1,4 +1,10 @@
 // Place all the styles related to the Places controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import "list-of-choices"
+@import "list-of-choices";
+
+.marker {
+  display: block;
+  margin-top: -0.2em;
+  font-size: 75%;
+}

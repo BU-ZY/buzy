@@ -145,7 +145,8 @@ span#vote-count {
     cursor: pointer;
     font-size: 1em;
     padding: 0.5em;
-    height: 1.5em;
+    height: 1.8em;
+    padding-top: 0.2em;
   }
 
   .expander-tab-container .tab.inverse {
@@ -296,6 +297,9 @@ a#title-link, a#title-link:hover {
     display: inline;
     padding-top: 5px;
   }
+}
+.nav-up {
+    top: -40px;
 }
 
 /* popups */

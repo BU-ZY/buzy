@@ -17,7 +17,10 @@
 			<%= render 'votes/form2', :place => place %>
 		</div>
 		<div class="expander-tab-container">
-			<div class="tab" place="<%= place.id %>">vote</div>
+			<div class="tab" place="<%= place.id %>">
+				vote
+				<i class="fa fa-angle-down marker"></i>
+			</div>
 		</div>
 	</div>
 </span>
@@ -39,10 +42,10 @@ $(function() {
 	    $correspondingExpandable = $(this).parent().parent().children('.expandable'); // the expandable div in this same container
 	    $correspondingExpandable.slideToggle(500, function() { // toggle the visibility
 	    	if ($correspondingExpandable.is(":visible")) {
-	    		$tab.text("hide");
+	    		$tab.html("hide <i class='fa fa-angle-up marker'></i>");
 	    		$tab.addClass('inverse');
 	    	} else {
-	    		$tab.text("vote");
+	    		$tab.html("vote <i class='fa fa-angle-down marker'></i>");
 	    		$tab.removeClass('inverse');
 	    	}
 	    });
