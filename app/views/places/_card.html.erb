@@ -2,17 +2,9 @@
 	<div class="filler"></div>
 	<div class="overlay">
 		<div class="place-name">
-			<a href="places/<%= place.id %>">
-				<%= place.name%>
-			</a>
+			<%= place.name %>
 		</div>
 		<div class="score-name">
-<!-- 			<% if place.score.nil? %>
-				<span class="none">No recent votes!</span>
-			<% else %>
- 				<%= busyness_name(place.prediction) %>
-			<% end %> -->
-
 			<%= busyness_name(place.prediction) %>
 		</div>
 		<div class="expandable" place="<%= place.id %>">
