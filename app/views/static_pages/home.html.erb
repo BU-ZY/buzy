@@ -13,21 +13,29 @@
 				<% end %>
 			<% end %>
 
-			<div class="row-fluid" id="places">
-				<%= render 'places/multiplecards', :places => @places %>
-				<span class="card" id="example">
-					<div class="overlay">
-						<div class="place-name">
-							<a href="#suggestion-popup" class="open-popup-link">	
-								<div class="btn" id="what-btn">Suggest a new place!</div>
-							</a>
-							<div id="suggestion-popup" class="white-popup mfp-hide"> <!-- actual popup -->
-								<%= render 'places/suggestionform' %>
-							</div>
+			<!-- make a section for each tag -->
+
+			
+				<% Place.allowed_tags.sort.each do |tag| %>
+					<h3 class="tag-header">#<%= tag %></h1>
+					<div class="row-fluid" id="places">
+						<%= render 'places/multiplecards', :places => Place.find_by_tag(tag) %>
+					</div>
+				<% end %>					
+
+
+			<span class="card" id="example">
+				<div class="overlay">
+					<div class="place-name">
+						<a href="#suggestion-popup" class="open-popup-link">	
+							<div class="btn" id="what-btn">Suggest a new place!</div>
+						</a>
+						<div id="suggestion-popup" class="white-popup mfp-hide"> <!-- actual popup -->
+							<%= render 'places/suggestionform' %>
 						</div>
 					</div>
-				</span>
-			</div>
+				</div>
+			</span>
 		</div>
 	</div>
 </div>
