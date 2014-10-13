@@ -22,7 +22,7 @@ module ApplicationHelper
   def busyness_name(score)
     case score # THESE COLORS SHOULD MATCH WITH CUSTOM.
       when nil
-        "Nil score!"
+        "Nil prediction!"
       when 0..25
         "Not busy"
       when 26..50
