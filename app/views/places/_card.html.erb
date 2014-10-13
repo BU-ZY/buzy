@@ -7,11 +7,12 @@
 			</a>
 		</div>
 		<div class="score-name">
-			<% if place.score.nil? %>
+<!-- 			<% if place.score.nil? %>
 				<span class="none">No recent votes!</span>
 			<% else %>
  				<%= busyness_name(place.prediction) %>
-			<% end %>
+			<% end %> -->
+			<%= place.prediction %>
 		</div>
 		<div class="expandable" place="<%= place.id %>">
 			<%= render 'votes/form2', :place => place %>
