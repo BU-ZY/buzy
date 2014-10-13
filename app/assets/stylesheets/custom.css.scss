@@ -119,12 +119,11 @@ span#vote-count {
   }
 
   h3.tag-header {
-    color: $white;
+    color: black;
     display: inline-block;
     width: auto;
     padding: 20px;
-    background-color: $aqua;
-    @include rounded($default-rounding);
+    border-bottom: 1px solid black;
   }
 }
 
@@ -451,7 +450,7 @@ footer {
     display: none;
   }
   #white-bg {
-    background-color: #dfdfdf !important;
+    background-color: $light-gray !important;
   }
   .navbar-fixed-top,
   .navbar-fixed-bottom,
