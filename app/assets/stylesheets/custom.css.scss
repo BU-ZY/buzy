@@ -123,6 +123,8 @@ span#vote-count {
     display: inline-block;
     width: auto;
     padding: 20px;
+    background-color: $light-gray;
+    @include transparency-of(0.9);
     border-bottom: 1px solid black;
   }
 }
