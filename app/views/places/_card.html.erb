@@ -1,4 +1,8 @@
 <span class="card" place="<%= place.id %>">
+	<div class="tag-icon">
+		<%= render inline:place.icon_for_tag %>
+	</div>
+
 	<div class="filler"></div>
 	<div class="overlay">
 		<div class="place-name">

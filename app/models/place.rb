@@ -22,6 +22,23 @@ class Place < ActiveRecord::Base
 		end
 	end
 
+	def icon_for_tag # returns a font-awesome icon for the primary tag
+		case tags.first
+		when nil
+			'x'
+		when 'dining'
+			fa_icon "cutlery"
+		when 'entertainment'
+			fa_icon "smile-o"
+		when 'study'
+			fa_icon "graduation-cap"
+		when 'fitness'
+			fa_icon "bicycle"
+		else
+			'?'
+		end
+	end
+
 	def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
     # where("name like ?", "%#{query}%") -> case sensitive on PostgreSQL!

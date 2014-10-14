@@ -13,16 +13,8 @@
 				<% end %>
 			<% end %>
 
-			<!-- make a section for each tag -->
-
-			
-				<% Place.allowed_tags.sort.each do |tag| %>
-					<h3 class="tag-header">#<%= tag %></h1>
-					<div class="row-fluid" id="places">
-						<%= render 'places/multiplecards', :places => Place.find_by_tag(tag) %>
-					</div>
-				<% end %>					
-
+			<!-- render all places -->
+			<%= render 'places/multiplecards', :places => Place.all %>			
 
 			<span class="card" id="example">
 				<div class="overlay">
