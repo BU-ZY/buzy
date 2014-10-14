@@ -19,5 +19,9 @@
 file = File.open(File.join(Rails.root, 'app', 'assets', 'json', 'locations.json')).read
 json = JSON.parse(file)
 json.each do |p|
-	Place.create(name: p['name'], location: p['location']) unless p['name'] == "CENTER"
+  if p['name'] != "CENTER"
+    new_place = Place.new(name: p['name'], location: p['location'])
+    new_place.tags = p['tags'] unless p['tags'].nil?
+    new_place.save
+  end
 end

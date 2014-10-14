@@ -1,4 +1,8 @@
 module ApplicationHelper
+
+  include FontAwesome::Rails::IconHelper # for using fontawesome
+  include ActionView::Helpers::TagHelper # for using fontawesome
+
   def busyness_color(score)
     colors = {
       red: '#C4161B',

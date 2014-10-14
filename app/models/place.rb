@@ -22,10 +22,31 @@ class Place < ActiveRecord::Base
 		end
 	end
 
+	def icon_for_tag # returns a font-awesome icon for the primary tag
+		case tags.first
+		when nil
+			'x'
+		when 'dining'
+			fa_icon "cutlery"
+		when 'entertainment'
+			fa_icon "smile-o"
+		when 'study'
+			fa_icon "graduation-cap"
+		when 'fitness'
+			fa_icon "bicycle"
+		else
+			'?'
+		end
+	end
+
 	def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
     # where("name like ?", "%#{query}%") -> case sensitive on PostgreSQL!
     where("LOWER(name) LIKE ?", "%#{query.downcase}%")
+	end
+
+	def self.find_by_tag(tag_name) # finds any place where the first item in it's tag array is the given tag name
+		where("'#{tag_name.downcase}' = tags[1]")
 	end
 
 	def votes_closest_to_now(opts={}) # returns past votes closest to the current hour
@@ -33,6 +54,22 @@ class Place < ActiveRecord::Base
 		hour_of_day = opts[:hour] ? opts[:hour] : DateTime.now.hour
 		margin = opts[:margin] ? opts[:margin] : 2 # the allowed difference in hours between 'hour' and the time the vote was cast
 		votes.where("abs(extract(hour from created_at) - #{hour_of_day}) <= #{margin}").order(created_at: :asc).take(num_records)
+	end
+
+	def self.allowed_tags
+		["study","dining","entertainment","fitness"]
+	end
+
+	# tagging - the first tag is the primary tag
+
+	def add_tag(new_tag)
+		update_attributes(tags: self.tags + [new_tag]) if Place.allowed_tags.include?(new_tag)
+	end
+
+	def add_tags(tag_array)
+		tag_array.each do |tag|
+			update_attributes(tags: self.tags + [new_tag]) if Place.allowed_tags.include?(new_tag)
+		end
 	end
 
 	def self.cast_vote_from_ingalls_page # method to be run by cron

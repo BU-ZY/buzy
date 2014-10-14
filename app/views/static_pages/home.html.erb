@@ -13,21 +13,21 @@
 				<% end %>
 			<% end %>
 
-			<div class="row-fluid" id="places">
-				<%= render 'places/multiplecards', :places => @places %>
-				<span class="card" id="example">
-					<div class="overlay">
-						<div class="place-name">
-							<a href="#suggestion-popup" class="open-popup-link">	
-								<div class="btn" id="what-btn">Suggest a new place!</div>
-							</a>
-							<div id="suggestion-popup" class="white-popup mfp-hide"> <!-- actual popup -->
-								<%= render 'places/suggestionform' %>
-							</div>
+			<!-- render all places -->
+			<%= render 'places/multiplecards', :places => Place.all %>			
+
+			<span class="card" id="example">
+				<div class="overlay">
+					<div class="place-name">
+						<a href="#suggestion-popup" class="open-popup-link">	
+							<div class="btn" id="what-btn">Suggest a new place!</div>
+						</a>
+						<div id="suggestion-popup" class="white-popup mfp-hide"> <!-- actual popup -->
+							<%= render 'places/suggestionform' %>
 						</div>
 					</div>
-				</span>
-			</div>
+				</div>
+			</span>
 		</div>
 	</div>
 </div>

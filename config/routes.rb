@@ -3,7 +3,7 @@ Buzy::Application.routes.draw do
   get "sessions/create"
   get "sessions/destroy"
   resources :users
-  resources :places
+  # resources :places
   resources :votes
   resources :sessions, only: [:new, :create, :destroy]
 
