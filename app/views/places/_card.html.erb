@@ -1,9 +1,8 @@
 <span class="card" place="<%= place.id %>">
+	<div class="filler"></div>
 	<div class="tag-icon">
 		<%= render inline:place.icon_for_tag %>
 	</div>
-
-	<div class="filler"></div>
 	<div class="overlay">
 		<div class="place-name">
 			<%= place.name %>
@@ -31,7 +30,7 @@ $(function() {
 	    $(this).hide();
 	});
 
-	$maxHeight = ($thisCard.outerHeight()-parseInt($thisCard.css('padding-top'))); // the maximum height for the color fill
+	$maxHeight = ($thisCard.outerHeight()-parseInt($thisCard.css('line-height'))); // the maximum height for the color fill
 	$thisCard.find('.filler').height($maxHeight * <%= (place.prediction.to_f/100) %>); // set the height of the filler
 
 	$thisCard.find(".tab").click(function () { // make sure to select only the tab on this card
