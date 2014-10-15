@@ -1,9 +1,9 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
+# Now using PostgreSQL
+
 development:
+  # this stuff so it works on alex's computer
+  #username: postgres
+  #password: 
   adapter: postgresql
   database: db/development
   pool: 5
