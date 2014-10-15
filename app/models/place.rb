@@ -16,7 +16,7 @@ class Place < ActiveRecord::Base
 	def prediction(opts={})
 		votes = votes_closest_to_now(opts)
 		if votes.empty?
-			nil
+			0
 		else		
 			avg = (votes.inject(0){|sum, vote| sum + vote.score}.to_f/votes.size)/10
 			case
