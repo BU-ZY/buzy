@@ -26,9 +26,9 @@ $(document).ready(function(){
 	    // set note text
 	    marker.note = "<a href='/places/" + (i+1) + "'>"  + namesArray[i] + "</a>: " + scoresArray[i];
 	    // set marker color
-		if (scoresArray[i] < 33) {
+		if (scoresArray[i] < 3) {
 			marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-		} else if (scoresArray[i] > 66) {
+		} else if (scoresArray[i] > 7) {
 			marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
 		} else {
 			marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
