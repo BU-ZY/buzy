@@ -1,15 +1,16 @@
 <span class="card" place="<%= place.id %>">
-	<div class="tag-icon">
-		<%= render inline:place.icon_for_tag %>
-	</div>
-
 	<div class="filler"></div>
+	<span class="tag-icon">
+		<%= render inline:place.icon_for_tag %>
+	</span>
+	
 	<div class="overlay">
 		<div class="place-name">
 			<%= place.name %>
 		</div>
+
 		<div class="score-name">
-			<%= busyness_name(place.prediction) %>
+			<%= (place.prediction) %>
 		</div>
 		<div class="expandable" place="<%= place.id %>">
 			<%= render 'votes/form2', :place => place %>
@@ -31,11 +32,10 @@ $(function() {
 	    $(this).hide();
 	});
 
-	$maxHeight = ($thisCard.outerHeight()-parseInt($thisCard.css('padding-top'))); // the maximum height for the color fill
-	$thisCard.find('.filler').height($maxHeight * <%= (place.prediction.to_f/100) %>); // set the height of the filler
+	$maxHeight = ($thisCard.outerHeight()-parseInt($thisCard.css('line-height'))); // the maximum height for the color fill
+	$thisCard.find('.filler').height($maxHeight * <%= (place.prediction.to_f/10) %>); // set the height of the filler
 
 	$thisCard.find(".tab").click(function () { // make sure to select only the tab on this card
-		console.log('click event!');
 	    $tab = $(this);
 	    $correspondingExpandable = $(this).parent().parent().children('.expandable'); // the expandable div in this same container
 	    $correspondingExpandable.slideToggle(500, function() { // toggle the visibility

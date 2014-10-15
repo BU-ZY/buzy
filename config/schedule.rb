@@ -21,6 +21,6 @@
 
 set :output, 'log/cron.log' # where should output from cron jobs be written
 
-every 1.minute do
+every 1.hour do
 	runner "Place.cast_vote_from_ingalls_page"
 end

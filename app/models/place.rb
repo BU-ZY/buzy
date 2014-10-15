@@ -16,9 +16,17 @@ class Place < ActiveRecord::Base
 	def prediction(opts={})
 		votes = votes_closest_to_now(opts)
 		if votes.empty?
-			nil
-		else
-			(votes.inject(0){|sum, vote| sum + vote.score}.to_f/votes.size).round # the average 
+			0
+		else		
+			avg = (votes.inject(0){|sum, vote| sum + vote.score}.to_f/votes.size)/10
+			case
+			when avg >= 10
+				return 10
+			when avg <= 1
+				return 0
+			else
+				return avg.round(1)
+			end
 		end
 	end
 
@@ -53,7 +61,7 @@ class Place < ActiveRecord::Base
 		num_records = opts[:num] ? opts[:num] : 25 # number of records to return
 		hour_of_day = opts[:hour] ? opts[:hour] : DateTime.now.hour
 		margin = opts[:margin] ? opts[:margin] : 2 # the allowed difference in hours between 'hour' and the time the vote was cast
-		votes.where("abs(extract(hour from created_at) - #{hour_of_day}) <= #{margin}").order(created_at: :asc).take(num_records)
+		votes.where("abs(extract(hour from created_at) - #{hour_of_day}) <= #{margin}").order(created_at: :desc).take(num_records)
 	end
 
 	def self.allowed_tags
