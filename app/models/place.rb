@@ -19,7 +19,14 @@ class Place < ActiveRecord::Base
 			nil
 		else		
 			avg = (votes.inject(0){|sum, vote| sum + vote.score}.to_f/votes.size)/10
-			return avg>=10 ? 10 : avg.round(1)
+			case
+			when avg >= 10
+				return 10
+			when avg <= 1
+				return 0
+			else
+				return avg.round(1)
+			end
 		end
 	end
 
