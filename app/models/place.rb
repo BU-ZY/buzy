@@ -29,7 +29,7 @@ class Place < ActiveRecord::Base
 		when 'dining'
 			fa_icon "cutlery"
 		when 'entertainment'
-			fa_icon "smile-o"
+			fa_icon "group"
 		when 'study'
 			fa_icon "graduation-cap"
 		when 'fitness'
