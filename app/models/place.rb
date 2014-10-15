@@ -61,7 +61,7 @@ class Place < ActiveRecord::Base
 		num_records = opts[:num] ? opts[:num] : 25 # number of records to return
 		hour_of_day = opts[:hour] ? opts[:hour] : DateTime.now.hour
 		margin = opts[:margin] ? opts[:margin] : 2 # the allowed difference in hours between 'hour' and the time the vote was cast
-		votes.where("abs(extract(hour from created_at) - #{hour_of_day}) <= #{margin}").order(created_at: :dsc).take(num_records)
+		votes.where("abs(extract(hour from created_at) - #{hour_of_day}) <= #{margin}").order(created_at: :desc).take(num_records)
 	end
 
 	def self.allowed_tags
