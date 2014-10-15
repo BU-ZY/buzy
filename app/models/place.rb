@@ -17,8 +17,9 @@ class Place < ActiveRecord::Base
 		votes = votes_closest_to_now(opts)
 		if votes.empty?
 			nil
-		else
-			(votes.inject(0){|sum, vote| sum + vote.score}.to_f/votes.size).round # the average 
+		else		
+			avg = (votes.inject(0){|sum, vote| sum + vote.score}.to_f/votes.size)/10
+			return avg>=10 ? 10 : avg.round(1)
 		end
 	end
 
