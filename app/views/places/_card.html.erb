@@ -34,11 +34,6 @@ $(function() {
 	$thisCard.find('.filler').height($maxHeight * <%= (place.prediction.to_f/100) %>); // set the height of the filler
 
 	$thisCard.find(".tab").click(function () { // make sure to select only the tab on this card
-		
-		$('.expandable').each(function(i, obj) {
-			//obj.slideUp(); // close all the other ones
-		});
-
 	    $tab = $(this);
 	    $correspondingExpandable = $(this).parent().parent().children('.expandable'); // the expandable div in this same container
 	    $correspondingExpandable.slideToggle(500, function() { // toggle the visibility
