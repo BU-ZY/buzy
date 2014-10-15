@@ -17,6 +17,7 @@ gem  'google_static_maps_helper'
 gem 'whenever', :require => false
 gem 'nokogiri'
 gem 'pg'
+gem 'newrelic_rpm'
 
 
 group :development, :test do
