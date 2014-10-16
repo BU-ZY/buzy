@@ -1,8 +1,93 @@
-<div id="contact-screem" class="center hero-unit">
-	<div class="row-fluid">
-			<h2>
-				Have a suggestions for new locations on campus or any comments? <br>
-				Shoot us a message at <a href="mailto:contact@bzzy.io"> contact@bzzy.io</a>!
-			</h2>
+<form class="form-horizontal" id="contact_form">
+
+	<!-- Form Title -->
+	<h2>
+		How can we make Bzzy better?
+	</h2>
+	<h3>
+		We would love to hear any comments, suggestions or feedback you have!	
+	</h3><br>
+
+	<!-- Name input-->
+	<div>
+		<label for="name">Your Name:</label>  
+		<input id="name" name="name" type="text" placeholder="Enter your name" class="form-control input-md"><br><br>
 	</div>
-</div>
+
+
+	<!-- Email input-->
+	<div>
+		<label for="email">Your Email:</label>  
+		<input id="email" name="email" type="text" placeholder="Enter your email address" class="form-control input-md"><br><br>
+	</div>
+
+
+	<!-- Message input-->
+	<div>
+		<label for="msg">Message:</label>
+		<textarea id="msg" name="msg" placeholder="Enter your message here!" class="form-control input-md" required=""></textarea><br><br>
+	</div>
+
+
+	<!-- Button -->
+	<div>
+		<input type="submit" class="btn" id="submit">
+	</div>
+
+
+</form>
+
+<script>
+jQuery(function($)  
+{
+    $("#contact_form").submit(function()
+    {
+        var email = $("#email").val(); // get email field value
+        var name = $("#name").val(); // get name field value
+        var msg = $("#msg").val(); // get message field value
+        $.ajax(
+        {
+            type: "POST",
+            url: "https://mandrillapp.com/api/1.0/messages/send.json",
+            data: {
+                'key': 'qhzj_4LKpDHI-Xc2a3Cnyw',
+                'message': {
+                    'from_email': email,
+                    'from_name': name,
+                    'headers': {
+                        'Reply-To': email
+                    },
+                    'subject': 'Contact Us Submission',
+                    'text': msg,
+                    'to': [
+                    {
+                        'email': 'contact@bzzy.io',
+                        'name': 'Bzzy',
+                        'type': 'to'
+                    }]
+                }
+            }
+        })
+        .done(function(response) {
+            $("#name").val(''); // reset field after successful submission
+            $("#email").val(''); // reset field after successful submission
+            $("#msg").val(''); // reset field after successful submission
+        })
+        .fail(function(response) {
+            alert('Error sending message.');
+        });
+        return false; // prevent page refresh
+    });
+});
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55756042-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
