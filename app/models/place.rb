@@ -13,6 +13,10 @@ class Place < ActiveRecord::Base
 		weighted_score(votes)
 	end
 
+	def self.ordered_by_popularity # orderes all the places by the number of votes
+		Place.all.sort_by{|place| -place.votes.count}
+	end
+
 	def prediction(opts={})
 		votes = votes_closest_to_now(opts)
 		if votes.empty?

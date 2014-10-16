@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
       @places = Place.search(params[:search])
       @search_term = params[:search]
     else
-      @places = Place.all
+      @places = Place.ordered_by_popularity
     end
   end
 

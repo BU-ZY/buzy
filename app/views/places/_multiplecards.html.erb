@@ -1,3 +1,12 @@
 <% places.each do |place| %> 
-	<%= render 'places/card', :place => place %>
+	<span id="ajax-refreshable-place-<%= place.id %>">
+ 		<%= render 'places/card', :place => place %>
+ 	</span>
+ 	<script>
+		$("#ajax-refreshable-place-<%= place.id %> .tab .vote").click(function() {
+			var card = $(this).parent.parent;
+			card.html("<%= escape_javascript(render(:partial => 'places/card', :locals => {:place => place})).html_safe %>");
+		});
+	</script>
 <% end %>
+

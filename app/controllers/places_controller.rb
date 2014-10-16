@@ -39,7 +39,7 @@ class PlacesController < ApplicationController
   end
 
   def index
-    @places = Place.all
+    @places = Place.order_by_popularity.all
   end
 
   private

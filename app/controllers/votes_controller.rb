@@ -18,10 +18,12 @@ class VotesController < ApplicationController
     refer_page = URI(request.referer).path
     @vote = Vote.new(vote_params)
     if @vote.save
-      redirect_to refer_page # this takes us back to whatever page the form was submitted on
+      redirect_to :back, :remote => true
+      # redirect_to refer_page # this takes us back to whatever page the form was submitted on
       # redirect_to place_path(@vote.place)
     else
-      render 'new'
+      # render 'new'
+      # redirect_to :back, :remote => true
     end
   end
 
