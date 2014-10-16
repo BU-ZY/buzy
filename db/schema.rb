@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141013193615) do
+ActiveRecord::Schema.define(version: 20141014171414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "items", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "list_id"
+  end
+
+  create_table "lists", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "places", force: true do |t|
     t.string   "name",                    null: false
@@ -26,18 +40,14 @@ ActiveRecord::Schema.define(version: 20141013193615) do
   end
 
   create_table "users", force: true do |t|
+    t.string   "provider"
+    t.string   "uid"
     t.string   "name"
-    t.string   "email"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password"
-    t.string   "password_digest"
-    t.string   "remember_token"
-    t.boolean  "admin",           default: false
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
   create_table "votes", force: true do |t|
     t.integer  "score"
