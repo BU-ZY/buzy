@@ -21,7 +21,7 @@ class StaticPagesController < ApplicationController
   	@center_coords = json.find{|p| p['name'] == 'CENTER'}['location'].gsub(" ","").split(",")
   	selection = Place.where.not(location: nil).select{|p| p.location != ""} # find all the actual places
   	@addresses = selection.map{|p| p.location.gsub(" ","").split(",")} # 2d array of [lat,long]
-  	@scores = selection.map{|p| busyness_name(p.prediction)}
+  	@scores = selection.map{|p| p.prediction}
   	@names = selection.map{|p| p.name}
   	render 'map'
   end

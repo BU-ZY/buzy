@@ -24,14 +24,14 @@ $(document).ready(function(){
 	    	position: new google.maps.LatLng(addressArray[i][0],addressArray[i][1])
 	    });
 	    // set note text
-	    marker.note = "<a href='/places/" + (i+1) + "'>"  + namesArray[i] + "</a>: " + scoresArray[i];
+	    marker.note = namesArray[i] + ": " + scoresArray[i];
 	    // set marker color
-		if (scoresArray[i] < 33) {
-			marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-		} else if (scoresArray[i] > 66) {
-			marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+		if (scoresArray[i] < 3) {
+			marker.setIcon('https://maps.google.com/mapfiles/ms/icons/green-dot.png');
+		} else if (scoresArray[i] > 7) {
+			marker.setIcon('https://maps.google.com/mapfiles/ms/icons/red-dot.png');
 		} else {
-			marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+			marker.setIcon('https://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
 		}
 		// add click listener to display the note
 	    google.maps.event.addListener(marker, 'click', function() {
