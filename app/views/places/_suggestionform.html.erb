@@ -1,4 +1,4 @@
-<h2>Suggest a New Place</h2>
+<!-- <h2>Suggest a New Place</h2>
 
 <form action="MAILTO:contact@bzzy.io" method="post" enctype="text/plain">
 	What's it Called?<br>
@@ -8,3 +8,72 @@
 	<input type="submit" class="btn" value="Send">
 	<input type="reset" class="btn" value="Reset">
 </form>
+ -->
+
+<form class="form-horizontal" id="contact_form">
+
+	<!-- Form Name -->
+	<legend>Suggest a New Place!</legend>
+
+	<!-- Place input-->
+	  <label for="place">What place would you like us to add?</label>
+	  <input id="place" name="place" type="text" placeholder="Enter the name of the place" class="form-control input-md" required=""><br><br>
+
+
+	<!-- Name input-->
+	  <label for="name">Your Name</label>  
+	  <input id="name" name="name" type="text" placeholder="Enter your name here" class="form-control input-md"><br><br>
+
+
+	<!-- Email input-->
+	  <label for="email">Your Email</label>  
+	  <input id="email" name="email" type="text" placeholder="Enter your email address here" class="form-control input-md"><br><br>
+
+	<!-- Button -->
+	<input type="submit" class="btn" id="submit">
+
+</form>
+
+<script>
+jQuery(function($)  
+{
+    $("#contact_form").submit(function()
+    {
+        var email = $("#email").val(); // get email field value
+        var name = $("#name").val(); // get name field value
+        var place = $("#place").val(); // get message field value
+        $.ajax(
+        {
+            type: "POST",
+            url: "https://mandrillapp.com/api/1.0/messages/send.json",
+            data: {
+                'key': 'qhzj_4LKpDHI-Xc2a3Cnyw',
+                'message': {
+                    'from_email': email,
+                    'from_name': name,
+                    'headers': {
+                        'Reply-To': email
+                    },
+                    'subject': 'New Place Submission',
+                    'text': place,
+                    'to': [
+                    {
+                        'email': 'contact@bzzy.io',
+                        'name': 'Bzzy',
+                        'type': 'to'
+                    }]
+                }
+            }
+        })
+        .done(function(response) {
+            $("#name").val(''); // reset field after successful submission
+            $("#email").val(''); // reset field after successful submission
+            $("#place").val(''); // reset field after successful submission
+        })
+        .fail(function(response) {
+            alert('Error sending message.');
+        });
+        return false; // prevent page refresh
+    });
+});
+</script>
