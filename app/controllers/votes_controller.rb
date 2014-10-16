@@ -2,17 +2,17 @@ class VotesController < ApplicationController
   # ***DISABLING SIGN IN FOR DEV***
   #before_action :signed_in_user, only: [:new,:create]
   
-  def new
-  	@vote = Vote.new
-    if params[:id]
-      @place = params[:id]
-    end
-    @place
-  end
+  # def new
+  # 	@vote = Vote.new
+  #   if params[:id]
+  #     @place = params[:id]
+  #   end
+  #   @place
+  # end
 
-  def show
-  	@vote = Vote.find(params[:id])
-  end
+  # def show
+  # 	@vote = Vote.find(params[:id])
+  # end
 
   def create
     refer_page = URI(request.referer).path
