@@ -4,7 +4,7 @@
 	<h2>
 		How can we make Bzzy better?
 	</h2>
-	
+
 	<!-- Message input-->
 	<div>
 		<textarea id="msg" name="msg" placeholder="Enter your message here!" class="form-control input-md" required=""></textarea><br><br>
@@ -62,6 +62,7 @@ jQuery(function($)
             }
         })
         .done(function(response) {
+        	alert('Message sent successfully!');
             $("#name").val(''); // reset field after successful submission
             $("#email").val(''); // reset field after successful submission
             $("#msg").val(''); // reset field after successful submission
