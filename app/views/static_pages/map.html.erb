@@ -11,12 +11,13 @@ $(document).ready(function(){
 	};
 
 	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	var bounds = new google.maps.LatLngBounds();
 
 	var addressArray = new Array(<%= raw @addresses %>)[0];
 	var scoresArray = new Array(<%= raw @scores %>)[0];
 	var namesArray = new Array(<%= raw @names %>)[0];
 	var infoWindow = new google.maps.InfoWindow({content: ''});
-
+	
 	function add_marker(i) {
 		// add marker to page
 	    var marker = new google.maps.Marker({
@@ -25,6 +26,8 @@ $(document).ready(function(){
 	    });
 	    // set note text
 	    marker.note = namesArray[i] + ": " + scoresArray[i];
+	    // extend bounds
+	    bounds.extend(marker.getPosition());
 	    // set marker color
 		if (scoresArray[i] < 3) {
 			marker.setIcon('https://maps.google.com/mapfiles/ms/icons/green-dot.png');
@@ -40,10 +43,11 @@ $(document).ready(function(){
 	    });
 	    return marker;
 	}
-
 	for (var i = 0; i < addressArray.length; i++) {
 		add_marker(i);
 	}
+	// make sure all the markers fit
+	map.fitBounds(bounds);
 });
 	
 
